@@ -1,0 +1,22 @@
+body{
+    background-color: #EFF2F1 !important;
+
+}
+.haber{
+    background-color: #F2EEB3 ;
+}
+.haber, p, h1, h2, ul, li, hr {
+    color: #481E1E;
+}
+body{
+    margin: 0;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+
+}
+footer{
+  margin-top: auto;
+  margin-bottom: 0;
+}
+

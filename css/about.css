@@ -1,0 +1,42 @@
+.seccion-media{
+ background: #F2EEB3;
+}
+.testimonio {
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+.table > thead {
+    text-align: center ;
+    justify-content: center;
+    color: white ;
+}
+
+.testimonio tbody {
+    background: transparent ;
+    text-align: center;
+   
+}
+.video-autoplay {
+    position: absolute; /* O relative dependiendo del contexto */
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: auto;
+    object-fit: cover; /* Ajusta el tamaño del video para cubrir el área sin distorsión */
+    z-index: -1; /* Asegura que el video esté detrás de otros elementos */
+}
+video{
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor_video{
+    display: flex;
+justify-content:center  !important;
+align-items: center !important;
+
+}
+
