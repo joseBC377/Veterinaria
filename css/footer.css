@@ -20,3 +20,13 @@ footer{
   margin-bottom: 0;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Esto evitará el desbordamiento horizontal */
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
