@@ -54,10 +54,22 @@
 .imagen_tamaño {
     width: 80%;
     height: auto;
-    padding: 1rem;
-    border-radius: 5px !important;
-
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.logo_tamaño{
+    width: 40%;
+    height: auto;
+    flex-direction: column;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+.imagen_tamaño:hover, .logo_tamaño:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+  
 .seccion3{
     padding: 12px;
 }
@@ -75,6 +87,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
 }
 
 .text_center {
@@ -93,17 +106,16 @@
     padding-right: 20px;
 }
 
-/* html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Esto evitará el desbordamiento horizontal 
+table > thead {
+    --bs-table-bg: #481E1E;
+    --bs-table-color:aliceblue ;
 }
+table > tbody{
+    --bs-table-bg: #E0BE94;
+    --bs-table-border-color: #F2EEB3;
+    
 
-.container-fluid {
-    padding-left: 0;
-    padding-right: 0;
-} */
-
+}
 
 
 @media screen and (max-width: 820px) {
