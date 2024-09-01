@@ -32,7 +32,7 @@
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
     cursor: default;
     transition: all 400ms ease;
-    height: 550px !important;
+    height: 620px !important;
 }
 
 .card:hover {
@@ -118,8 +118,10 @@ table > tbody{
 }
 
 
-@media screen and (max-width: 820px) {
-
+@media screen and (max-width: 990px) {
+    .card{
+        height: 620px !important;
+    }
     .text_center {
         display: flex;
         flex-direction: column;
@@ -129,21 +131,37 @@ table > tbody{
     }
 
     .text_center>p {
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: unset;
+        margin-top: 0.5rem;
 
+    }
+    .seccion3>li, p{
+        text-align: unset !important;
     }
 
     .imagen_tamaño {
-        width: 100%;
+        width: 80%;
     }
-    .card {
-        height: auto !important;
-    }
+    
    .orden1{
     order: 2;
    }
-   .orden2{
+   .ordenx{
     order: 1;
    }
+   
+
+}
+
+@media screen and (max-width: 820px) {
+
+    .card {
+        height: auto !important;
+    }
+    .imagen_tamaño {
+        width: 100%;
+    }
+
 }
