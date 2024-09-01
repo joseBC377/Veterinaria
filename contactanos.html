@@ -73,7 +73,7 @@
 
         <div class="col-md-6">
             <div class="form-contact">
-                <h4 style="text-align: center; color: rgb(229, 226, 200);font-size: 34px; ">Formulario de Contacto</h4><p>
+                <h4 style=" color:#481E1E  ;font-size: 34px; ">Formulario de Contacto</h4><p>
                 <form>
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
@@ -90,13 +90,23 @@
                         <input type="text" class="form-control" placeholder="Teléfono" required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Asunto" required>
+                        <select class="form-control" required>
+                            <option value="" disabled selected> <b>Seleccione un servicio</b>
+                            </option>
+                            <option value="vacunacion">Vacunación</option>
+                            <option value="desparasitacion">Desparasitación</option>
+                            <option value="diagnostico">Diagnóstico</option>
+                            <option value="consultoria_veterinaria">Consultoría Veterinaria</option>
+                            <option value="comportamiento_animal">Comportamiento Animal</option>
+                            <option value="grooming">Grooming</option>
+                            <option value="otros">Otros</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <textarea class="form-control" rows="4" placeholder="Mensaje" required></textarea>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                        <button type="submit" class="btn-custom">Enviar mensaje</button>
                     </div>
                 </form>
             </div>

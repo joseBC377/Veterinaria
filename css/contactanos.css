@@ -20,17 +20,76 @@ h4{
     margin-bottom: 10px;
 }
 
+.form-control{
+    appearance: auto !important; 
+    -webkit-appearance: auto; 
+}
+/* .custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    padding-right: 40px; 
+    font-size: 16px;
+    color: #333;
+    border-radius: 4px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="none" stroke="black" stroke-width="1.5" d="M1 1l4 4 4-4"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 6px; 
+}
 .btn-submit {
     background-color: #17cfcf;
     color: white;
 }
 .btn-submit:hover {
     background-color: #0bb1b1;
-}
+} */
 .social-icons i {
     font-size: 24px;
     margin-right: 15px;
 }
+.btn-custom {
+    background-color:  #732F2F; 
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s ease; 
+    cursor: pointer; 
+}
+
+.btn-custom:hover {
+    background-color: #481E1E; 
+}
+
+
+.contact-info{
+    padding: 1.5rem;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .contact-info .bi{
+        margin-bottom: 0 !important;
+    }
+    .contact-info .i{
+        font-size: 10px;
+    }
+
+    .form-contact{
+        top: 3rem;
+        position: relative;
+    }
+    
+
+
+}
+
+
+
 @media (max-width: 991px) {
     .contact-info {
         text-align: center;
@@ -63,3 +122,4 @@ h4{
         margin-bottom: 20px;
     }
 }
+
