@@ -1,5 +1,6 @@
 body {
     background-color: #EFF2F1 !important;
+    ;
 
 }
 
@@ -37,8 +38,6 @@ html,
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    /* Esto evitará el desbordamiento horizontal */
 }
 
 .container-fluid {
