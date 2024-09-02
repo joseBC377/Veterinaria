@@ -62,7 +62,9 @@ height: auto;
 background-color: black !important;
 }
 
-
+.modal-open {
+    padding-right: 0 !important; 
+  }
 @media screen and (max-width:1281px) {
     .seccion_izquierda > a {
         margin: 0 60px; 
