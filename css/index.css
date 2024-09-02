@@ -57,10 +57,24 @@ height: auto;
     transform: translateX(8px);
 
 }
+
+.carousel-indicators [data-bs-target] {
+background-color: black !important;
+}
+
+
 @media screen and (max-width:1281px) {
     .seccion_izquierda > a {
         margin: 0 60px; 
     }
+}
+@media screen and (max-width:992px) {
+    .orden1{
+        order: 2;
+       }
+       .ordenx{
+        order: 1;
+       }
 }
 
 
@@ -88,5 +102,5 @@ height: auto;
         padding: 0 1rem;
 
     }
-   
+  
 }
