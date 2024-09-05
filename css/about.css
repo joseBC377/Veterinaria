@@ -43,21 +43,20 @@
 
 .card img {
     width: 100%;
-    /* height: 210px; */
 }
 
-.menu_cartas {
+.menu-cartas {
     padding: 15px;
 }
 
 
-.imagen_tamaño {
+.imagen-tamaño {
     width: 80%;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.logo_tamaño{
+.logo-tamaño{
     width: 40%;
     height: auto;
     flex-direction: column;
@@ -65,7 +64,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     
 }
-.imagen_tamaño:hover, .logo_tamaño:hover {
+.imagen-tamaño:hover, .logo-tamaño:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
@@ -74,23 +73,23 @@
     padding: 12px;
 }
 
-.cartas_home>h2 {
+.cartas-home>h2 {
     text-align: center;
 }
 
-.cartas_home {
+.cartas-home{
     text-align: center;
     padding: 13px !important;
 }
 
-.imagen_section {
+.imagen-section {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem;
 }
 
-.text_center {
+.text-center {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,7 +100,7 @@
     padding-bottom: 4px;
 }
 
-.text_center>p {
+.text-center>p {
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -117,7 +116,7 @@ table > tbody{
 
 }
 
-.seccion_medico {
+.seccion-medico {
     margin: 10px 6px;
     padding: 15px 15px;
     border-radius: 6px;
@@ -137,23 +136,27 @@ table > tbody{
  .carousel-control-next, .carousel-control-prev{
     width: 30%;
  }
- .control_car{
+ .control-car{
     background: #a5a1a1a6;
     padding: 1.6rem;
     border-radius: 43px;
  }
- .img_medico{
+ .img-medico{
     width: 100%;
     height: 300px;
  }
  .carousel-indicators [data-bs-target]{
     background: #c9c7c7;
  }
+ body.modal-open {
+    padding-right: 0 !important;
+    overflow-y: hidden;
+}
 @media screen and (max-width: 990px) {
     .card{
         height: 620px !important;
     }
-    .text_center {
+    .text-center {
         display: flex;
         flex-direction: column;
         padding-top: 1rem;
@@ -161,7 +164,7 @@ table > tbody{
 
     }
 
-    .text_center>p {
+    .text-center>p {
         padding-left: 5px;
         padding-right: 5px;
         text-align: unset;
@@ -172,7 +175,7 @@ table > tbody{
         text-align: unset !important;
     }
 
-    .imagen_tamaño {
+    .imagen-tamaño {
         width: 80%;
     }
     
@@ -198,7 +201,6 @@ table > tbody{
         width: 100%;
     }
 
-        /* aaeaeaeaeaeaea */
         .seccion_medico {
             height: auto !important;
         }

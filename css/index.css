@@ -1,40 +1,37 @@
-.estilo_cuerpo{
+.estilo-cuerpo{
     background-color: #EFF2F1;
 
 } 
-
-.tamaño_cuerpo{
+.tamaño-cuerpo{
  min-height: 72.3vh;
 margin-bottom: 0;
 }
-.seccion_derecha{
+.seccion-derecha{
     display: flex;
 align-items: center; 
 justify-content: center;
 }
-.seccion_derecha>img{
+.seccion-derecha>img{
 min-width: 80%;
 height: auto;
 
 }
-.seccion_izquierda{
+.seccion-izquierda{
     display: flex;
     flex-direction: column;
-    /* text-align: center; */
     justify-content: center;
-    /* align-items: center; */
     padding: 0 4rem !important;
 }
-.seccion_izquierda> h4{
+.seccion-izquierda> h4{
     padding: 1rem 3rem;
     padding-bottom: 0;
     
 }
-.seccion_izquierda>p{
+.seccion-izquierda>p{
     padding: 0 3rem;
     margin-top: 0;
 }
-.seccion_izquierda > a{
+.seccion-izquierda> a{
     display: inline-block;
     color: white !important;
     background:#732F2F ;
@@ -51,7 +48,7 @@ height: auto;
     text-align: center;
     margin: 0 200px;
 }
-.seccion_izquierda a:hover{
+.seccion-izquierda a:hover{
     background: #481E1E;
     border: 1px solid white;
     transform: translateX(8px);
@@ -66,43 +63,39 @@ background-color: black !important;
     padding-right: 0 !important; 
   }
 @media screen and (max-width:1281px) {
-    .seccion_izquierda > a {
+    .seccion-izquierda > a {
         margin: 0 60px; 
     }
 }
 @media screen and (max-width:992px) {
-    .orden1{
+       .orden1{
         order: 2;
        }
        .ordenx{
         order: 1;
        }
 }
-
-
-
 @media screen and (max-width: 820px) {
     
-    .seccion_izquierda,.seccion_derecha{
+    .seccion-izquierda,.seccion-derecha{
         min-width:100%;
     }
-    .seccion_izquierda> h1{
+    .seccion-izquierda> h1{
         padding-top: 1rem;
     }
-    .seccion_izquierda{
+    .seccion-izquierda{
         padding: 0 2rem  !important;
     }
-    .seccion_izquierda> h4{
+    .seccion-izquierda> h4{
         padding-top: 0rem;
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    .seccion_izquierda> a{
+    .seccion-izquierda> a{
         margin: 0 15px;
     }
-    .seccion_izquierda> p{
+    .seccion-izquierda> p{
         padding: 0 1rem;
 
     }
-  
 }
