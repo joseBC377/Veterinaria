@@ -1,0 +1,207 @@
+.seccion-media {
+    background: #F2EEB3;
+}
+
+.testimonio {
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+.table>thead {
+    text-align: center;
+    justify-content: center;
+    color: white;
+}
+
+.testimonio tbody {
+    background: transparent;
+    text-align: center;
+
+}
+
+.carta-about {
+    text-align: center;
+}
+
+.card {
+    margin: 10px 6px;
+    padding: 15px 15px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    transition: all 400ms ease;
+    height: 620px !important;
+}
+
+.card:hover {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2%);
+
+}
+
+.card img {
+    width: 100%;
+}
+
+.menu-cartas {
+    padding: 15px;
+}
+
+
+.imagen-tamaño {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.logo-tamaño{
+    width: 40%;
+    height: auto;
+    flex-direction: column;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+.imagen-tamaño:hover, .logo-tamaño:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+  
+.seccion3{
+    padding: 12px;
+}
+
+.cartas-home>h2 {
+    text-align: center;
+}
+
+.cartas-home{
+    text-align: center;
+    padding: 13px !important;
+}
+
+.imagen-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.text-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 4px;
+}
+
+.text-center>p {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+table > thead {
+    --bs-table-bg: #481E1E;
+    --bs-table-color:aliceblue ;
+}
+table > tbody{
+    --bs-table-bg: #E0BE94;
+    --bs-table-border-color: #F2EEB3;
+    
+
+}
+
+.seccion-medico {
+    margin: 10px 6px;
+    padding: 15px 15px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    transition: all 400ms ease;
+    width: 500px;
+    height: 500px;
+}
+
+.medico img {
+    width: 100%;
+    height: auto;
+}
+ .carousel-control-next, .carousel-control-prev{
+    width: 30%;
+ }
+ .control-car{
+    background: #a5a1a1a6;
+    padding: 1.6rem;
+    border-radius: 43px;
+ }
+ .img-medico{
+    width: 100%;
+    height: 300px;
+ }
+ .carousel-indicators [data-bs-target]{
+    background: #c9c7c7;
+ }
+ body.modal-open {
+    padding-right: 0 !important;
+    overflow-y: hidden;
+}
+@media screen and (max-width: 990px) {
+    .card{
+        height: 620px !important;
+    }
+    .text-center {
+        display: flex;
+        flex-direction: column;
+        padding-top: 1rem;
+        text-align: start;
+
+    }
+
+    .text-center>p {
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: unset;
+        margin-top: 0.5rem;
+
+    }
+    .seccion3>li, p{
+        text-align: unset !important;
+    }
+
+    .imagen-tamaño {
+        width: 80%;
+    }
+    
+   .orden1{
+    order: 2;
+   }
+   .ordenx{
+    order: 1;
+   }
+
+  
+
+   
+
+}
+
+@media screen and (max-width: 820px) {
+
+    .card {
+        height: auto !important;
+    }
+    .imagen_tamaño {
+        width: 100%;
+    }
+
+        .seccion_medico {
+            height: auto !important;
+        }
+}
