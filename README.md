@@ -1,82 +1,84 @@
 ## Base de datos  
 - Copiar el codigo sql a su base de datos, de preferencia que la base de datos sea "Mysql". 
 ```
-CREATE DATABASE veterinaria_petvet;
-USE veterinaria_petvet;
+CREATE DATABASE VeterinariaPETVET;
+USE VeterinariaPETVET;
 
 CREATE TABLE Clientes (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100),
-    apellido VARCHAR(100),
-    correo_electronico VARCHAR(150),
-    telefono VARCHAR(15),
-    direccion VARCHAR(255),
-    contrasena VARCHAR(255)
+    ClienteID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100),
+    Apellido VARCHAR(100),
+    CorreoElectronico VARCHAR(150),
+    Telefono VARCHAR(15),
+    Direccion VARCHAR(255),
+    Contrasena VARCHAR(255)
 );
 
 CREATE TABLE Categoria_Producto (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_categoria VARCHAR(100)
+    CategoriaID INT AUTO_INCREMENT PRIMARY KEY,
+    NombreCategoria VARCHAR(100)
 );
 
-CREATE TABLE Items (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(50),
-    descripcion VARCHAR(150),
-    precio DECIMAL(10,2),
-    tipo_item VARCHAR(50),
-    direccion VARCHAR(255),
-    id_categoria INT,
-    FOREIGN KEY (id_categoria) REFERENCES Categoria_Producto(id)
+CREATE TABLE Producto (
+    ProductoID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50),
+    Descripcion VARCHAR(150),
+    Precio DECIMAL(10, 2),
+    Stock INT,
+    CategoriaID INT,
+    FOREIGN KEY (CategoriaID) REFERENCES Categoria_Producto(CategoriaID)
 );
 
-CREATE TABLE Citas (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    fecha_cita DATETIME,
-    hora_cita TIME,
-    estado_cita VARCHAR(50),
-    notas TEXT,
-    veterinario_asignado VARCHAR(150),
-    id_cliente INT,
-    id_item INT,
-    FOREIGN KEY (id_cliente) REFERENCES Clientes(id),
-    FOREIGN KEY (id_item) REFERENCES Items(id)
+CREATE TABLE Pedido (
+    PedidoID INT AUTO_INCREMENT PRIMARY KEY,
+    Fecha DATETIME,
+    ClienteID INT,
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
 );
 
-CREATE TABLE Contactanos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    apellido VARCHAR(20),
-    correo VARCHAR(150),
-    tipo_servicio VARCHAR(50),
-    nombre VARCHAR(20),
-    mensaje TEXT,
-    fecha_contacto DATETIME,
-    id_cliente INT,
-    FOREIGN KEY (id_cliente) REFERENCES Clientes(id)
+CREATE TABLE Detalle_Pedido (
+    DetalleID INT AUTO_INCREMENT PRIMARY KEY,
+    PedidoID INT,
+    ProductoID INT,
+    Cantidad INT,
+    PrecioUnitario DECIMAL(10, 2),
+    FechaPedido DATETIME,
+    FOREIGN KEY (PedidoID) REFERENCES Pedido(PedidoID),
+    FOREIGN KEY (ProductoID) REFERENCES Producto(ProductoID)
+);
+
+CREATE TABLE Servicio (
+    ServicioID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(60),
+    Descripcion VARCHAR(150),
+    Precio DECIMAL(10, 2)
 );
 
 CREATE TABLE Pagos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    total DECIMAL(10,2),
-    metodo_pago VARCHAR(30),
-    fecha_pago DATETIME,
-    id_pedido INT,
-    id_cita INT,
-    id_cliente INT,
-    FOREIGN KEY (id_cliente) REFERENCES Clientes(id),
-    FOREIGN KEY (id_cita) REFERENCES Citas(id)
+    PagoID INT AUTO_INCREMENT PRIMARY KEY,
+    PedidoID INT,
+    Total DECIMAL(10, 2),
+    FechaPago DATETIME,
+    MetodoPago VARCHAR(30),
+    FOREIGN KEY (PedidoID) REFERENCES Pedido(PedidoID)
 );
 
-CREATE TABLE DetallePedido (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    cantidad INT,
-    precio_unitario DECIMAL(10,2),
-    fecha_pedido DATETIME,
-    id_cliente INT,
-    id_item INT,
-    id_pagos INT,
-    FOREIGN KEY (id_cliente) REFERENCES Clientes(id),
-    FOREIGN KEY (id_item) REFERENCES Items(id),
-    FOREIGN KEY (id_pagos) REFERENCES Pagos(id)
+CREATE TABLE Reserva (
+    ReservaID INT AUTO_INCREMENT PRIMARY KEY,
+    Fecha DATETIME,
+    Hora TIME,
+    ServicioID INT,
+    Veterinario VARCHAR(150),
+    ClienteID INT,
+    FOREIGN KEY (ServicioID) REFERENCES Servicio(ServicioID),
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
+);
+
+CREATE TABLE Proveedores (
+    ProveedorID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100),
+    Direccion VARCHAR(255),
+    Telefono VARCHAR(15),
+    Correo VARCHAR(150)
 );
 
