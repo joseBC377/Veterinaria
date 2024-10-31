@@ -8,7 +8,7 @@ CREATE TABLE Clientes (
     ClienteID INT AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR(100),
     Apellido VARCHAR(100),
-    CorreoElectronico VARCHAR(150),
+    Email VARCHAR(150),
     Telefono VARCHAR(15),
     Direccion VARCHAR(255),
     Contrasena VARCHAR(255)
@@ -16,15 +16,15 @@ CREATE TABLE Clientes (
 
 CREATE TABLE Categoria_Producto (
     CategoriaID INT AUTO_INCREMENT PRIMARY KEY,
-    NombreCategoria VARCHAR(100)
+    Nombre VARCHAR(100),
+    Tipo VARCHAR(100)
 );
 
 CREATE TABLE Producto (
     ProductoID INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre VARCHAR(50),
-    Descripcion VARCHAR(150),
+    Imagen VARCHAR(250),
+    Titulo VARCHAR(150),
     Precio DECIMAL(10, 2),
-    Stock INT,
     CategoriaID INT,
     FOREIGN KEY (CategoriaID) REFERENCES Categoria_Producto(CategoriaID)
 );
@@ -52,6 +52,8 @@ CREATE TABLE Servicio (
     Nombre VARCHAR(60),
     Descripcion VARCHAR(150),
     Precio DECIMAL(10, 2)
+    Imagen VARCHAR(255),
+    Detalles VARCHAR(255)
 );
 
 CREATE TABLE Pagos (
@@ -81,4 +83,16 @@ CREATE TABLE Proveedores (
     Telefono VARCHAR(15),
     Correo VARCHAR(150)
 );
+
+CREATE TABLE Contactanos (
+    ContactoID INT AUTO_INCREMENT PRIMARY KEY,  
+    Nombre VARCHAR(100) NOT NULL,               
+    Apellido VARCHAR(100) NOT NULL,             
+    Correo VARCHAR(150) NOT NULL,                
+    Mensaje TEXT NOT NULL,              
+    CategoriaID INT,
+    FOREIGN KEY (CategoriaID) REFERENCES Categoria_Producto(CategoriaID)
+);
+
+
 
