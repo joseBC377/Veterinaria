@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS servicio (
    ServicioID INT AUTO_INCREMENT PRIMARY KEY,
    nombre varchar(255) NOT NULL,
    descripcion varchar(255) DEFAULT NULL,
-   precio varchar(100)DEFAULT NULL,
+   precio double DEFAULT NULL,
    imagen varchar(255) DEFAULT NULL,
    detalles varchar(255) DEFAULT NULL
 );
@@ -105,8 +105,10 @@ CREATE TABLE IF NOT EXISTS Contactanos (
     Correo VARCHAR(150) NOT NULL,                
     Mensaje TEXT NOT NULL,              
     ServicioID INT,
-    FOREIGN KEY (ServicioID) REFERENCES Servicio(ServicioID)
+    FOREIGN KEY (ServicioID ) REFERENCES servicio(ServicioID )
+                   
 );
+
                   
 
 
