@@ -1,3 +1,8 @@
+# Esquema de la Base de Datos PetVet
+
+A continuación, se muestra el esquema de la base de datos **PetVet**:
+
+```sql
 CREATE DATABASE petvet;
 USE petvet;
 
