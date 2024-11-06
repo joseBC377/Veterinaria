@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:insert="~{/fragments/template :: meta(titulo='Nosotros')}"></th:block>
+        <link rel="stylesheet" href="/css/about.css">
+    </head>
+    <body>
+        <header>
+            <nav th:replace="~{/fragments/template :: nav}"></nav>
+        </header>
+        <section class="container-fluid">
+            <div class="row">
+                <div class="text-center col-12 col-lg-6 ">
+                    <h4 style=" border-bottom: 2px solid #732F2F;padding-bottom: 10px;">
+                        Compromiso con el Bienestar Animal</h4>
+                    <p>En Pet Love, nuestra misión es proporcionar cuidado excepcional y compasivo para todas las mascotas.
+                        Nos dedicamos a mejorar la calidad de vida de los animales a través de servicios veterinarios de
+                        alta calidad, educación para los dueños, y un enfoque centrado en el bienestar integral de cada
+                        mascota que entra por nuestras puertas. Nos aseguramos de que cada visita a nuestra veterinaria sea
+                        una experiencia positiva tanto para los animales como para sus dueños, brindando atención
+                        personalizada y soluciones adaptadas a las necesidades individuales. Además, participamos
+                        activamente en iniciativas comunitarias y programas de concienciación para promover el bienestar
+                        animal en nuestra comunidad.
+                    </p>
+                </div>
+                <div class="imagen-section col-12 col-lg-6 ">
+                    <img class="imagen-tamaño" src="/Multimedia/Home/imagen_cachorro.jpg" alt="section1_img">
+                </div>
+            </div>
+            <div class=" seccion-media row">
+                <div class="imagen-section col-12 col-lg-6 orden1 ">
+                    <img class="imagen-tamaño"
+                         src="https://t2.ea.ltmcdn.com/es/posts/9/1/9/cuando_llevar_al_gato_al_veterinario_por_primera_vez_23919_orig.jpg"
+                         alt="section2_img">
+                </div>
+                <div class=" text-center col-12 col-lg-6 orden2">
+                    <h4 style=" border-bottom: 2px solid #732F2F; padding-bottom: 10px;"> Nuestro Viaje Juntos</h4>
+                    <p>Desde nuestra fundación en 2021, Pet Love ha crecido hasta convertirse en una de las clínicas
+                        veterinarias más confiables de la comunidad. Empezamos con el simple deseo de ofrecer cuidados
+                        excepcionales a las mascotas, y hemos evolucionado para incluir una amplia gama de servicios que
+                        atienden a las necesidades cambiantes de nuestros clientes y sus queridos compañeros animales. Hoy
+                        en día, somos un equipo dedicado de especialistas, comprometidos a mantener la salud y felicidad de
+                        cada mascota que atendemos, innovando constantemente en nuestras prácticas y tecnologías para
+                        ofrecer siempre lo mejor. Creemos que cada visita es una oportunidad para fortalecer el vínculo con
+                        nuestras mascotas y con sus familias, acompañándolos en cada etapa de su vida.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" seccion3 col-12 col-lg-6">
+                    <h4>¿Por qué Elegirnos?</h4>
+                    <ul>
+                        <li><b>Atención Personalizada</b></li>
+                        <p>
+                            En Pet Love, tratamos a cada mascota como un miembro de la familia. Nuestro equipo se toma el
+                            tiempo para conocer a tu mascota y entender sus necesidades específicas, asegurando que reciba
+                            la mejor atención posible.
+                        </p>
+                        <li><b>Instalaciones Modernas </b></li>
+                        <p>
+                            Nuestras instalaciones están equipadas con tecnología de punta para diagnósticos precisos y
+                            tratamientos efectivos. Desde quirófanos especializados hasta áreas de recuperación
+                            confortables, ofrecemos un entorno seguro y acogedor para tu mascota.
+                        </p>
+                        <li><b>Plan de Salud Preventiva </b></li>
+                        <p>
+                            Ofrecemos planes de salud personalizados para mantener a tu mascota en óptimas condiciones.
+                            Estos planes incluyen chequeos regulares, vacunas y consejos sobre nutrición.
+                        </p>
+                        <li><b>Enfoque Holístico </b></li>
+                        <p>
+                            Adoptamos un enfoque integral que considera tanto la salud física como el bienestar emocional de
+                            tu mascota. Nuestro cuidado abarca todos los aspectos del bienestar de tu compañero.
+                        </p>
+                    </ul>
+                </div>
+                <div class="imagen-section col-12 col-lg-6 justify-content-center align-items-center">
+                    <img class="logo-tamaño" src="/Multimedia/Home/logo_petlove.png" alt="section2">
+                </div>
+            </div>
+        </div>
+
+        <div class="seccion-media row ">
+            <div class="imagen-section col-12 col-lg-6 orden1 ">
+                <img class="imagen-tamaño"
+                     src="https://cdn.milenio.com/uploads/media/2019/04/17/tener-un-perro-incrementa-las_0_36_968_603.jpg"
+                     alt="section3_img">
+            </div>
+            <div class=" seccion3 col-12 col-lg-6 orden2 ">
+                <h4>Testimonios de Nuestros Clientes</h4>
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Nombre del Cliente</th>
+                            <th scope="col">Experiencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Laura Martínez</td>
+                            <td>En Pet Love, siempre cuidan a mi perro como si fuera parte de su familia. Estoy muy
+                                agradecida.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Carlos Ramírez</td>
+                            <td>La atención es impecable, y los veterinarios son muy profesionales. Mis gatos están en
+                                las mejores manos.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Ana Fernández</td>
+                            <td>Mi conejo recibió un tratamiento increíble en Pet Love. Estoy muy feliz con los
+                                resultados.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Pedro Silva </td>
+                            <td>El equipo de Pet Love es simplemente fantástico. Mi perra se siente muy cómoda cada vez
+                                que la llevo.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>María López </td>
+                            <td>Mi gato siempre se siente tranquilo cuando lo llevo a Pet Love. El equipo es
+                                increíblemente atento y profesional.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Juan Pérez</td>
+                            <td>La cirugía de mi perro fue un éxito gracias a Pet Love. Estoy muy agradecido por su
+                                dedicación y cuidado.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Sofía González </td>
+                            <td>El plan de salud preventiva que ofrecen es excelente. Mis mascotas siempre están en las
+                                mejores manos.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class=" menu-cartas row ">
+            <h4 class="text-center">Nuestros logros</h4>
+            <div class=" cartas-home col-12 col-sm-6 col-lg-3">
+                <div class="card">
+                    <figure>
+                        <img class="carta-about" src="/Multimedia/About/imagen_premios.jpg" alt="cart_img1">
+                    </figure>
+                    <div class="texto-carta">
+                        <h2>Premios </h2>
+                        <p>Estamos orgullosos de contar con certificaciones en estándares de cuidado animal, como la
+                            Certificación en Prácticas Veterinarias Avanzadas y la Acreditación de la Asociación
+                            Veterinaria Nacional. Estos reconocimientos reflejan nuestro compromiso con la excelencia y
+                            las mejores prácticas en el cuidado de las mascotas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cartas-home col-12 col-sm-6 col-lg-3">
+                <div class="card">
+                    <figure>
+                        <img class="carta-about" src="/Multimedia/About/imagen_comunidad.jpg" alt="cart_img1">
+                    </figure>
+                    <div class="texto-carta">
+                        <h2>Participación en la Comunidad</h2>
+                        <p>En Pet Love, estamos comprometidos con nuestra comunidad. Participamos en eventos locales y
+                            colaboramos con organizaciones benéficas para apoyar a las mascotas y sus dueños,
+                            promoviendo un entorno de cuidado y apoyo mutuo.</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="cartas-home col-12 col-sm-6 col-lg-3">
+                <div class="card">
+                    <figure>
+                        <img class="carta-about" src="/Multimedia/About/imagen_servicios.jpg" alt="cart_img4">
+                    </figure>
+                    <div class="texto-carta">
+                        <h2>Innovación en Servicios</h2>
+                        <p>Fuimos los primeros en la región en lanzar una innovadora campaña de salud regional. Este
+                            esfuerzo ha permitido ofrecer tratamientos más efectivos y menos invasivos, mejorando
+                            significativamente la calidad del cuidado que brindamos a nuestras mascotas.
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="cartas-home col-12 col-sm-6 col-lg-3">
+                <div class="card">
+                    <figure>
+                        <img class="carta-about" src="/Multimedia/About/imagen_certificado.jpg" alt="cart_img4">
+                    </figure>
+                    <div class="texto-carta">
+                        <h2>Certificaciones y Acreditaciones</h2>
+                        <p>Estamos orgullosos de contar con certificaciones en estándares de cuidado animal, con
+                            la Certificación en Prácticas Veterinarias Avanzadas Estas distinciones reflejan nuestro
+                            compromiso con la excelencia y la
+                            adopción de las mejores prácticas en el cuidado de las mascotas.</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <h4 class="text-center">Nuestro Equipo Medico</h4>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="seccion-medico" style="width: 25rem;">
+                                            <img class="img-medico" src="/Multimedia/About/lily_oncología.png"
+                                                 alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-center" style="padding: 1rem ;">Lily Velandia
+                                                    Aparicio</h5>
+                                                <p class="card-text text-center" style="padding: 0.5rem ;">ONCOLOGÍA</p>
+                                                Especialista en oncología con más de 10 años de experiencia en el tratamiento de cánceres.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="seccion-medico" style="width: 25rem;">
+                                            <img class="img-medico" src="/Multimedia/About/sorely_general.png"
+                                                 alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-center" style="padding: 1rem ;">Sorely
+                                                    Trujillo Becerra</h5>
+                                                <p class="card-text text-center" style="padding: 0.5rem ;">MEDICINA
+                                                    GENERAL</p>
+                                                Médico general con un enfoque en la atención integral del paciente y la prevención de enfermedades.    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="seccion-medico" style="width: 25rem;">
+                                            <img class="img_medico" src="/Multimedia/About/fernando_general.png"
+                                                 alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-center" style="padding: 1rem ;">Fernando
+                                                    Espinoza Ramírez</h5>
+                                                <p class="card-text text-center" style="padding: 0.5rem ;">CIRUGÍA
+                                                    GENERA</p>
+                                                Cirujano general con una vasta experiencia en procedimientos quirúrgicos y cuidados postoperatorios.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon control-car" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon control-car " aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+    <footer  th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Edición de mensajes')}"></th:block>
+    <link rel="stylesheet" href="/css/contactanos.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<style>
+    table > tbody {
+        --bs-table-bg: #e6e1db;
+        --bs-table-border-color: #F2EEB3 !important;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    
+    .table-custom {
+        min-width: 900px; 
+    }
+
+    .truncate-text {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
+    </header>
+    <h1 style="text-align: center; margin: 1rem;">Lista de mensajes</h1>
+
+    <div class="container-fluid" style="width: 100%; overflow-x: auto; display: flex; justify-content: center;">
+        <div class="table-responsive" style="width: 80%;">
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Mensaje</th>
+                        <th scope="col" colspan="2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody style="color: white;">
+                    <tr th:if="${#lists.isEmpty(edicionContactanos)}">
+                        <td colspan="7" class="text-center">No realizastes mensajes todavia.</td>
+                    </tr>
+                    <tr th:each="i : ${edicionContactanos}">
+                        <th scope="row">[[${i.id}]]</th>
+                        <td>[[${i.nombre}]]</td>
+                        <td>[[${i.apellido}]]</td>
+                        <td>[[${i.Correo}]]</td>
+                        <td>[[${i.servicio.nombre}]]</td>
+                        <td class="truncate-text" title="[[${i.Mensaje}]]">[[${i.Mensaje}]]</td>
+                        <td class="my-1">
+                            <a class="btn btn-warning" th:href="@{editar/{id}(id=${i.id})}">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
+                        </td>
+                        <td class="my-1">
+                            <a class="btn btn-danger" th:href="@{eliminar/{id}(id=${i.id})}"
+                               onclick="return confirm('Estas seguro de eliminar este mensaje')">
+                                <i class="bi bi-trash-fill"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container-fluid"
+        style="margin: 2rem; display: flex; align-items: flex-end; justify-content: flex-end; width: 80%;">
+        <a th:href="@{/contactanos}" class="btn-custom" style="text-decoration: none;">Regresar</a>
+    </div>
+
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+</html>

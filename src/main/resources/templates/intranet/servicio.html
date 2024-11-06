@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Edición de mensajes')}"></th:block>
+    <link rel="stylesheet" href="/css/contactanos.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<style>
+    table > tbody {
+        --bs-table-bg: #e6e1db;
+        --bs-table-border-color: #F2EEB3 !important;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table-custom {
+        min-width: 900px; 
+    }
+
+    .truncate-text {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
+    </header>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Listado de Servicios</h1>
+        <div class="text-right mb-3">
+            <a th:href="@{/servicio/nuevo}" class="btn-custom" style="text-decoration: none;">Agregar nuevo producto</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-custom">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Servicio ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Detalles</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s : ${servicios}">
+                        <td th:text="${s.id}"></td>
+                        <td th:text="${s.nombre}"></td>
+                        <td th:text="${s.descripcion}"></td>
+                        <td th:text="${s.precio}"></td>
+                        <td>
+                            <ul>
+                                <li th:each="detalle : ${s.detalles}" th:text="${detalle}"></li>
+                            </ul>
+                        </td>
+                        <td>
+                            <img th:if="${s.imagen}"
+                                 th:src="${s.imagen.startsWith('http') ? s.imagen : '' + s.imagen}"
+                                 alt="Imagen de servicio" width="100"/>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <a th:href="@{/servicio/editar/{id}(id=${s.id})}" class="btn btn-warning btn-sm me-3">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <a th:href="@{/servicio/eliminar/{id}(id=${s.id})}" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('¿Seguro que deseas borrar?')">
+                                    <i class="bi bi-trash-fill"></i> Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+
+    <div class="container-fluid"
+         style="margin: 2rem; display: flex; align-items: flex-end; justify-content: flex-end; width: 72%; margin-top: -1%;">
+        <a th:href="@{/servicios}" class="btn-custom" style="text-decoration: none;">Regresar</a>
+    </div>
+
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+</html>

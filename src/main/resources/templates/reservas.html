@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Reserva')}"></th:block>
+    <link rel="stylesheet" href="/css/reserva.css">
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
+    </header>
+    <div class="wrapper">
+        <div class="container">
+            <div class="back-button">
+                <a href="servicios">
+                    <button class="btn-back"> &#8592; Regresar a Servicios</button>
+                </a>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h1>Reserva tu cita</h1>
+
+                        <p>Selecciona el servicio, veterinario, fecha , hora y confirma tu cita en <span
+                                class="petlove">PetLove</span>
+                        </p>
+                        <div class="logo-container">
+                            <img src="/Multimedia/Home/imagen_login.jpeg" class="logo-img">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h2>PETLOVE CLÍNICA VETERINARIA</h2>
+                        <!-- Formulario 1: Selección de servicio -->
+                        <div class="form-step" id="step1">
+                            <h3>Seleccione un servicio</h3>
+                            <form id="service-form">
+                                <div class="service">
+                                    <input type="radio" id="vacunacion" name="service" value="Vacunación">
+                                    <label for="vacunacion">Vacunación - S/50</label>
+                                </div>
+                                <div class="service">
+                                    <input type="radio" id="desparasitación" name="service" value="Desparasitación">
+                                    <label for="desparasitación">Desparasitación- S/60</label>
+                                </div>
+                                <div class="service">
+                                    <input type="radio" id="diagnostico" name="service" value="Diagnóstico">
+                                    <label for="diagnostico">Diagnóstico - S/40</label>
+                                </div>
+                                <div class="service">
+                                    <input type="radio" id="consultoria" name="service" value="Consultoría Veterinaria">
+                                    <label for="consultoria">Consultoría Veterinaria - S/100</label>
+                                </div>
+                                <div class="service">
+                                    <input type="radio" id="comportamiento" name="service"
+                                        value="Comportamiento animal">
+                                    <label for="comportamiento">Comportamiento Animal - S/70</label>
+                                </div>
+                                <div class="service">
+                                    <input type="radio" id="Grooming" name="service" value="Grooming">
+                                    <label for="Grooming">Grooming - S/60</label>
+                                </div>
+                            </form>
+                            <div class="nav-buttons text-center">
+                                <button id="seguir1" class="btn btn-primary">Seguir</button>
+                            </div>
+                        </div>
+
+                        <!-- Formulario 2: Selección de veterinario -->
+                        <div class="form-step" id="step2" style="display: none;">
+                            <h3>Veterinarios disponibles</h3>
+                            <ul class="appointment-list" id="veterinarian-list"></ul>
+                            <div class="nav-buttons text-center">
+                                <button id="retroceder2" class="btn btn-secondary">Retroceder</button>
+                                <button id="seguir2" class="btn btn-primary">Seguir</button>
+                            </div>
+                        </div>
+                        <!-- Formulario 3: Día y fecha -->
+                        <div id="step3" style="display: none;">
+                            <h2>Selecciona el día y la hora</h2>
+                            <label for="appointment-date">Fecha de la cita:</label>
+                            <input type="text" id="appointment-date" placeholder="Selecciona una fecha" class="flatpickr">
+
+                            <ul id="available-times"></ul>
+
+                            <div class="nav-buttons">
+                                <button id="retroceder3" class="btn btn-secondary">Retroceder</button>
+                                <button id="seguir3" class="btn btn-primary">Confirmar cita</button>
+                            </div>
+                        </div>
+
+                        <!-- Formulario 4: Confirmación de cita -->
+                        <div id="step4" style="display: none;">
+                            <h2>Resumen de la cita</h2>
+                            <p id="appointment-summary"></p>
+                            <button id="otra-cita" style="font-size: 16px;">Sacar otra cita</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <script src="/javascript/reserva.js"></script>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+
+</html>

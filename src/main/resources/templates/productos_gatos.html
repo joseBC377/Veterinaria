@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Productos-Gatos')}"></th:block>
+    <link rel="stylesheet" href="/css/productos.css">
+</head>
+
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template :: nav}"></nav>
+    </header>
+    <main class="container text-center">
+        <div>
+            <img src="Multimedia/productos/banner_gato.png" class="img-fluid" alt="banner_gato">
+        </div>
+        <div class="row mt-4 titulo-secundario-productos">
+            <nav class="ruta">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a style="color: brown; text-decoration: none;"
+                            href="productos">Productos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Gatos</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row my-3">
+            <div class="col">
+                <a style="text-decoration: none;" href="#" onclick="verContenido('gatos','accesorios')">
+                    <img style="border-radius: 50%;" src="Multimedia/productos/seccion_gatos/accesorio.jpg"
+                        class="iconos" alt="logotipo">
+                    <p class="titulo-secundario-productos">Accesorios</p>
+                </a>
+            </div>
+            <div class="col">
+                <a style="text-decoration: none;" href="#" onclick="verContenido('gatos','alimentos')">
+                    <img style="border-radius: 50%;" src="Multimedia/productos/seccion_gatos/alimentos.jpg"
+                        class="iconos" alt="logotipo">
+                    <p class="titulo-secundario-productos">Alimentos</p>
+                </a>
+            </div>
+            <div class="col">
+                <a style="text-decoration: none;" href="#" onclick="verContenido('gatos','salud')">
+                    <img style="border-radius: 50%;" src="Multimedia/productos/seccion_perros/salud.jpg" class="iconos"
+                        alt="logotipo">
+                    <p class="titulo-secundario-productos">Higuiene y salud</p>
+                </a>
+            </div>
+            <div class="col">
+                <a style="text-decoration: none;" href="#" onclick="verContenido('gatos','ropa')">
+                    <img style="border-radius: 50%;" src="Multimedia/productos/seccion_perros/ropa.jpg" class="iconos"
+                        alt="logotipo">
+                    <p class="titulo-secundario-productos">Ropa y Moda</p>
+                </a>
+            </div>
+        </div>
+        <main class="container my-3 container-items">
+            <div id="contenido-gatos" class="row text-center">
+            </div>
+        </main>
+    </main>
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+
+</html>

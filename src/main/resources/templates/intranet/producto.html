@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Edición de productos')}"></th:block>
+    <title>Listado de productos</title>
+    <link rel="stylesheet" href="/css/contactanos.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<style>
+    table > tbody {
+        --bs-table-bg: #e6e1db;
+        --bs-table-border-color: #F2EEB3 !important;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .table-custom {
+        min-width: 900px; 
+    }
+
+    .truncate-text {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    th, td{
+        text-align: center;
+    }
+    .btn-custom {
+    background-color: #732F2F;
+    color: white;
+    border: none;
+    padding: 10px 45px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+</style>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
+    </header>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Listado de Productos</h1>
+        <div class="text-right mb-3">
+            <a th:href="@{/producto/nuevo}" class="btn-custom"  style="text-decoration: none;">Agregar nuevo producto</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Imagen</th>
+                        <th>Título</th>
+                        <th>Precio</th>
+                        <th>Categoría ID</th>
+                        <th>Nombre de la categoria</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody style="color: white;">
+                    <tr th:if="${#lists.isEmpty(productos)}">
+                        <td colspan="7" class="text-center">No hay productos disponibles.</td>
+                    </tr>
+                    <tr th:each="p : ${productos}">
+                        <td th:text="${p.id}"></td>
+                        <td>
+                            <img th:if="${p.imagen}"
+                                 th:src="${p.imagen.startsWith('http') ? p.imagen : '' + p.imagen}"
+                                 alt="Imagen de producto" width="100"/>
+                        </td>
+                        
+                        <td th:text="${p.titulo}"></td>
+                        <td th:text="${p.precio}"></td>
+                        <td th:text="${p.categoria.id}"></td>
+                        <td th:text="${p.categoria.nombre}"></td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <a th:href="@{/producto/editar/{id}(id=${p.id})}" class="btn btn-warning btn-sm me-3">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <a th:href="@{/producto/eliminar/{id}(id=${p.id})}" class="btn btn-danger"
+                                    onclick="return confirm('Seguro que deseas borrar')">
+                                    <i class="bi bi-trash-fill"></i>Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container-fluid"
+            style="margin: 2rem; display: flex; align-items: flex-end; justify-content: flex-end; width: 95%;">
+           <a th:href="@{/productos}" class="btn-custom" style="text-decoration: none;">Regresar</a>
+       </div>
+        </div>
+    </div>
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+
+</html>

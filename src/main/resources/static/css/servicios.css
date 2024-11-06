@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.imagen-servicio {
+    border-radius: 10px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imagen-servicio:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+.titulo-secundario-servicio{
+    text-align: center;
+    margin-top: 28px;
+}
+.titulo-primario-servicio{
+    font-size: 2rem; 
+    font-weight: bold;
+    color: #500b0b;
+}
+
+.card h-100 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h-100-content {
+    flex-grow: 1;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.teleconsulta-section {
+    position: relative;
+    background-image: url('path/to/your/image.png'); /* Ruta de la imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.teleconsulta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6); /* Efecto de superposición */
+}
+
+.teleconsulta-text {
+    position: relative;
+    z-index: 2;
+}
+
+.teleconsulta-text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #004ba0; /* Color del texto grande */
+}
+
+.teleconsulta-text .sub-title {
+    color: #1E90FF; /* Color del subtítulo */
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: transparent;
+    color: #004ba0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #5b7b9f;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #c6827d;
+    color: #9a3030;
+}
+.teleconsulta-section {
+    background-image: url('../Multimedia/servicios/imagen_reserva.png');
+}

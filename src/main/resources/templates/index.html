@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Inicio')}"></th:block>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template :: nav}"></nav>
+    </header>
+    <section class=" estilo-cuerpo container-fluid">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000"
+            style="margin-top: 4rem;">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="tamaño-cuerpo row">
+                        <div class="seccion-izquierda col-12 col-md-12 col-lg-6">
+                            <h1>Cuidando a tu mejor amigo con amor y dedicación</h1>
+                            <h4> En nuestra veterinaria, nos comprometemos a ofrecer servicios de calidad para mantener
+                                a tus mascotas
+                                felices y saludables. Desde chequeos regulares hasta cuidados especializados, estamos
+                                aquí para cada paso del
+                                camino.</h4>
+                            <p>Descubre cómo podemos cuidar de tu mascota</p>
+                            <a href="servicios">Servicios</a>
+                        </div>
+                        <div class="seccion-derecha col-12 col-md-12 col-lg-6">
+                            <img src="/Multimedia/Home/imagen_servicio.png" class="img-fluid" alt="Imagen derecha">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="tamaño-cuerpo row">
+
+                        <div class="seccion-derecha col-12 col-md-12 col-lg-6 orden1">
+                            <img src="/Multimedia/Home/imagen_productos.png" class="img-fluid" alt="Imagen derecha">
+                        </div>
+                        <div class="seccion-izquierda col-12 col-md-12 col-lg-6 orden2">
+                            <h1>Tu mascota merece lo mejor, nosotros lo brindamos</h1>
+                            <h4> Proporciona lo mejor a tu compañero con nuestra selección de productos especializados,
+                                pensados para su salud y comodidad.</h4>
+                            <p>Explora lo mejor para tu mascota en nuestra tienda</p>
+                            <a href="productos">Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="tamaño-cuerpo row">
+                        <div class="seccion-izquierda col-12 col-md-12 col-lg-6">
+                            <h1>Porque su bienestar es nuestra prioridad</h1>
+                            <h4> Tu opinión y consultas son importantes para nosotros. Contáctanos y te responderemos a
+                                la brevedad.</h4>
+                            <p>Estamos aquí para ayudarte, contáctanos hoy mismo</p>
+                            <a href="contactanos">Contáctanos</a>
+                        </div>
+                        <div class="seccion-derecha col-12 col-md-12 col-lg-6">
+                            <img src="/Multimedia/Home/imagen_contáctanos.png" class="img-fluid" alt="Imagen derecha">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+
+</html>

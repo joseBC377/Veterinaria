@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Edición de productos')}"></th:block>
+    <title>Listado de categorias</title>
+    <link rel="stylesheet" href="/css/contactanos.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<style>
+    table>tbody {
+        --bs-table-bg: #e6e1db;
+        --bs-table-border-color: #F2EEB3 !important;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+
+    .table-custom {
+        min-width: 900px;
+    }
+
+    .truncate-text {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    th,
+    td {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
+    </header>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Gestion de Cliente</h1>
+
+        <div class="text-right mb-3">
+            <a href="/clientes/nuevo" class="btn-custom" style="text-decoration: none;">Agregar Nuevo Cliente</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col" colspan="2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody style="color: white;">
+                    <tr th:if="${#lists.isEmpty(clientes)}">
+                        <td colspan="7" class="text-center">No hay usuarios disponibles para gestionar</td>
+                    </tr>
+                    <tr th:each="i : ${clientes}">
+                        <th scope="row">[[${i.id}]]</th>
+                        <td>[[${i.nombre}]]</td>
+                        <td>[[${i.apellido}]]</td>
+                        <td>[[${i.email}]]</td>
+                        <td>[[${i.telefono}]]</td>
+                        <td>[[${i.direccion}]]</td>
+                        <td >
+                            <a th:href="@{/clientes/editar/{id}(id=${i.id})}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/clientes/eliminar/{id}(id=${i.id})}" class="btn btn-danger"
+                                onclick="return confirm('Seguro que deseas borrar')">
+                                <i class="bi bi-trash-fill"></i>Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+    <div class="container-fluid"
+        style="margin: 2rem; display: flex; align-items: flex-end; justify-content: flex-end; width: 75%;">
+        <a th:href="@{/index}" class="btn-custom" style="text-decoration: none;">Regresar</a>
+    </div>
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+
+</html>

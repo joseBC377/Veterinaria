@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de productos')}"></th:block>
+    <link rel="stylesheet" href="/css/contactanos.css">
+    <link rel="stylesheet" href="/css/about.css">
+    <title>Mantenimiento</title>
+    <style>
+        .form-container {
+            background: #e7d1b7;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
+    </header>
+    <div class="container">
+        <div class="container" style="margin: 2rem;">
+            <a href="/reserva" class="btn-custom" style="text-decoration: none;">Regresar</a>
+        </div>
+    <h1 style="text-align: center;">LISTA DE RESERVAS</h1>
+        <hr />
+        <div class="form-container">
+            <form th:object="${reservas}" th:action="@{/reserva/guardar}" method="post">
+                <input type="hidden" class="form-control" readonly th:field="*{id}">
+        
+                <label for="fecha"><i class="far fa-calendar-alt icon"></i>Fecha</label>
+                <input type="date" class="form-control" th:field="*{fecha}" required>
+        
+                <label for="hora"><i class="far fa-clock icon"></i>Hora</label>
+                <input type="time" class="form-control" th:field="*{hora}" required>
+        
+                <label for="veterinario"><i class="fas fa-user-md icon"></i>Veterinario</label>
+                <input type="text" class="form-control" th:field="*{veterinario}" required>
+        
+                <label for="clientes"><i class="fas fa-user icon"></i>Cliente</label>
+                <select th:field="*{clienteId}" class="form-control" required>
+                    <option value="" disabled selected>Seleccione un cliente</option> 
+                    <option th:if="${clientes.isEmpty()}" value="">No hay clientes disponibles</option> 
+                    <option th:each="cliente : ${clientes}" 
+                            th:value="${cliente.id}" 
+                            th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></option>
+                </select>
+                <label for="servicios"><i class="fas fa-stethoscope icon"></i>Servicio</label>
+                <select th:field="*{servicioId}" class="form-control" required>
+                    <option th:if="${servicios.isEmpty()}" value="">No hay servicios disponibles</option>
+                    <option th:each="servicio : ${servicios}" 
+                            th:value="${servicio.id}" 
+                            th:text="${servicio.nombre}"></option>
+                </select>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn-custom" style="text-decoration: none;" 
+                            th:disabled="${clientes.isEmpty() || servicios.isEmpty()}">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <div class="container mt-3">
+            <div class="alert alert-warning" th:if="${mensajeErrorCliente}" th:text="${mensajeErrorCliente}"></div>
+            <div class="alert alert-warning" th:if="${mensajeErrorServicio}" th:text="${mensajeErrorServicio}"></div>
+        </div>
+    </div>
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+
+</html>

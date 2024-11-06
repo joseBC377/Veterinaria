@@ -1,0 +1,63 @@
+.titulo-secundario-productos {
+    color: #773c3b;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 8px;
+    /* padding: 0.5rem; */
+}
+
+.titulo-primario-productos {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #500b0b;
+}
+
+.numero-card {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.card {
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* NUEVOS CODIGOS  */
+.iconos {
+    width: 150px;
+}
+
+.ruta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boton-compra{
+    background-color: #732F2F;
+    color: white;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+    margin-bottom: 10px;
+    border: #732F2F;
+    width: 55%;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.boton-compra:hover {
+    background-color: #481E1E;
+}
+.h-100 {
+    height: 100% !important;
+    padding: 1.5rem 0rem;
+}

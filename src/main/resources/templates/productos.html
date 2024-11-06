@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Productos')}"></th:block>
+    <link rel="stylesheet" href="/css/productos.css">
+</head>
+
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template :: nav}"></nav>
+    </header>
+    <!-- INICIO DE PRODUCTOS  -->
+    <div class="container text-center ">
+        <h2 class="text-center titulo-primario-productos m-4">Categorias</h2>
+        <div class="row">
+            <div class="col">
+                <a style="text-decoration: none;" href="productos_perros">
+                    <img src="Multimedia/productos/perro.png" class="iconos" alt="logotipo">
+                    <p class="titulo-secundario-productos">Perros</p>
+                </a>
+            </div>
+            <div class="col">
+                <a style="text-decoration: none;" href="productos_gatos">
+                    <img src="Multimedia/productos/gato.png" class="iconos" alt="logotipo">
+                    <p class="titulo-secundario-productos">Gatos</p>
+                </a>
+            </div>
+            <div class="col">
+                <a style="text-decoration: none;" href="producto_otras_mascotas">
+                    <img src="Multimedia/productos/hamster.png" class="iconos" alt="logotipo">
+                    <p class="titulo-secundario-productos">Otras mascotas</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <h2 class="text-center titulo-primario-productos m-4">Nuestros productos</h2>
+    <main class="container my-3 container-items">
+        <div class="row text-center">
+            <div class="col-12 col-md-6 col-lg-3 mb-4" th:each="producto : ${productos}">
+                <div class="card">
+                    <img th:src="${producto.imagen}" class="card-img-top imagen-servicio" alt="${producto.titulo}">
+                    <div class="card-body">
+                        <h4 class="titulo-secundario-productos" th:text="${producto.titulo}"></h4>
+                        <p class="numero-card" th:text="${producto.precio}"></p>
+                        <button class="boton-compra">
+                            <i class="bi bi-cart-dash"> Comprar</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> -->
+    <!-- FIN DE PRODUCTOS  -->
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+
+</body>
+
+</html>

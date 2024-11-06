@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de productos')}"></th:block>
+    <title>Mantenimiento a Categoria</title>
+    <link rel="stylesheet" href="/css/contactanos.css">
+    <link rel="stylesheet" href="/css/about.css">
+    <style>
+        label {
+            font-weight: bold;
+        }
+        .formulario-container {
+            background: #e7d1b7;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
+    </header>
+    <div class="container">
+        <div class="text-right" style="margin: 2rem;">
+            <a href="/categoria" class="btn-custom" style="text-decoration: none;">Regresar</a>
+        </div>
+        <hr />
+        <div class="formulario-container">
+            <form th:object="${categoria}" th:action="@{/categoria/guardar}" method="post" class="form-container">
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group">
+                    <label for="nombre">Nombre de la Categoría</label>
+                    <input  class="form-control" type="text" th:field="*{nombre}" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo de Mascota</label>
+                    <input  class="form-control" type="text" th:field="*{tipo}" required>
+                </div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn-custom" style="text-decoration: none;">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+
+</html>

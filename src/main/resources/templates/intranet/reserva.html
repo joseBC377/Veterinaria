@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Edición de mensajes')}"></th:block>
+    <link rel="stylesheet" href="/css/contactanos.css">
+    <link rel="stylesheet" href="/css/about.css">
+    <style>
+        table > tbody {
+            --bs-table-bg: #e6e1db;
+            --bs-table-border-color: #F2EEB3 !important;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .table-custom {
+            min-width: 900px; 
+        }
+
+        .truncate-text {
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
+    </header>
+
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Listado de Reservas</h1>
+        <div class="text-right mb-3">
+            <a th:href="@{/reserva/nuevo}" class="btn-custom" style="text-decoration: none;">Agregar nueva reserva</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Reserva ID</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Servicio ID</th> 
+                        <th>Veterinario</th>
+                        <th>Cliente ID</th> 
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.isEmpty(reservas)}">
+                        <td colspan="7" class="text-center">No hay reservas disponibles.</td>
+                    </tr>
+                    <tr th:each="r : ${reservas}">
+                        <td th:text="${r.id}"></td>
+                        <td th:text="${r.fecha}"></td>
+                        <td th:text="${r.hora}"></td>
+                        <td th:text="${r.servicio.id}"></td>
+                        <td th:text="${r.veterinario}"></td>
+                        <td th:text="${r.cliente.id}"></td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <a th:href="@{/reserva/editar/{id}(id=${r.id})}" class="btn btn-warning btn-sm me-3">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <a th:href="@{/reserva/eliminar/{id}(id=${r.id})}" class="btn btn-danger"
+                                    onclick="return confirm('Seguro que deseas borrar')">
+                                    <i class="bi bi-trash-fill"></i>Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin: 2rem; display: flex; align-items: flex-end; justify-content: flex-end; width: 82%;">
+        <a th:href="@{/servicios}" class="btn-custom" style="text-decoration: none;">Regresar</a>
+    </div>
+
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Productos')}"></th:block>
+    <link rel="stylesheet" href="/css/productos.css">
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template :: nav}"></nav>
+    </header>
+    <main class="container text-center">
+        <div>
+            <img src="Multimedia/productos/banner_otras_mascotas.png" class="img-fluid" alt="banner_gato">
+        </div>
+        <div class="row mt-4 titulo-secundario-productos">
+            <nav class="ruta">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a style="color: brown; text-decoration: none;"
+                            href="productos">Productos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Otras mascotas</li>
+                </ol>
+            </nav>
+        </div>
+        <main class="container my-3 container-items">
+            <div class="row text-center">
+                <div class="col-12 col-md-6 col-lg-3 mb-4" th:each="producto : ${productos}">
+                    <div class="card">
+                        <img th:src="${producto.imagen}" class="card-img-top imagen-servicio" alt="${producto.titulo}">
+                        <div class="card-body">
+                            <h4 class="titulo-secundario-productos" th:text="${producto.titulo}"></h4>
+                            <p class="numero-card" th:text="${producto.precio}"></p>
+                            <button class="boton-compra">
+                                <i class="bi bi-cart-dash"> Comprar</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </main>
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+</body>
+
+</html>
