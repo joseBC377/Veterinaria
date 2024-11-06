@@ -1,6 +1,5 @@
 package com.example.demopetvet.controller;
 
-import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -20,6 +19,8 @@ import com.example.demopetvet.entity.Producto;
 import com.example.demopetvet.service.CategoriaService;
 import com.example.demopetvet.service.ProductoService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping("producto")
 public class ProductoController {
@@ -35,8 +36,8 @@ public class ProductoController {
         NumberFormat formatoMoneda = NumberFormat.getCurrencyInstance(new Locale("es", "PE"));
 
         productos.forEach(producto -> {
-            BigDecimal precioOriginal = new BigDecimal(producto.getPrecio());
-            producto.setPrecio(formatoMoneda.format(precioOriginal));
+            String precioFormateado = formatoMoneda.format(producto.getPrecio());
+            producto.setPrecioFormateado(precioFormateado);
         });
         model.addAttribute("productos", productos);
         return "intranet/producto";
@@ -59,17 +60,22 @@ public class ProductoController {
     // Ir al formulario
     @GetMapping("editar/{id}")
     public String productoEditar(Model model, @PathVariable Integer id) {
-        model.addAttribute("producto", service.selectById(id));
+        Producto producto = service.selectById(id);
+        if (producto == null) {
+            model.addAttribute("mensajeError", "Producto no encontrado");
+            return "redirect:/producto";
+        }
+        model.addAttribute("producto", producto);
         model.addAttribute("categorias", categoriaService.categoriaSel());
         return "intranet/producto_form";
     }
 
     // Procesar el formulario
     @PostMapping("guardar")
-    public String productoGuardar(@ModelAttribute Producto producto, BindingResult result, Model model) {
+    public String productoGuardar(@Valid @ModelAttribute("producto") Producto producto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("categorias", categoriaService.categoriaSel());
-            return "intranet/producto_form"; // Retornar al formulario con categorías
+            return "intranet/producto_form";
         }
         service.insUpd(producto);
         return "redirect:/producto";

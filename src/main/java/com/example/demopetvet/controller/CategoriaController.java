@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demopetvet.entity.Categoria;
 import com.example.demopetvet.service.CategoriaService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping("categoria")
 public class CategoriaController {
@@ -45,7 +47,7 @@ public class CategoriaController {
 
     // Procesar el formulario
     @PostMapping("guardar")
-    public String categoriaGuardar( @ModelAttribute Categoria categoria, BindingResult result) {
+    public String categoriaGuardar(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result) {
         if (result.hasErrors()) {
             return "intranet/categoria_form";
         }
