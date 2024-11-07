@@ -36,27 +36,40 @@
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input  class="form-control" type="text" th:field="*{nombre}" required>
+                    <p class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
                 </div>
+
                 <div class="form-group">
                     <label for="tipo">Apellido</label>
                     <input  class="form-control" type="text" th:field="*{apellido}" required>
+                    <p class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></p>
                 </div>
+
                 <div class="form-group">
                     <label for="tipo">Correo</label>
                     <input  class="form-control" type="text" th:field="*{email}" required>
+                    <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                 </div>
+                <div class="alert alert-danger" th:if="${mensajeError}" th:text="${mensajeError}"></div>
+
                 <div class="form-group">
-                    <label for="tipo">Telefono</label>
+                    <label for="tipo">Teléfono</label>
                     <input  class="form-control" type="number" th:field="*{telefono}" required>
+                    <p class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></p>
                 </div>
+
                 <div class="form-group">
                     <label for="tipo">Dirección</label>
                     <input  class="form-control" type="text" th:field="*{direccion}" required>
+                    <p class="text-danger" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></p>
                 </div>
+
                 <div class="form-group">
                     <label for="tipo">Contraseña</label>
-                    <input  class="form-control" type="password" th:field="*{contrasena}" required>
+                    <!-- se bloqueó la contraseña para que no se actualice si se está editando un cliente existente  -->
+                    <input  class="form-control" type="password" th:field="*{contrasena}" th:disabled="${cliente.id != null}">
                 </div>
+
                 <div class="text-center mt-3">
                     <button type="submit" class="btn-custom" style="text-decoration: none;">Aceptar</button>
                 </div>
