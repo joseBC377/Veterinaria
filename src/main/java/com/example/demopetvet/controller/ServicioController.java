@@ -9,12 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demopetvet.entity.Servicio;
 import com.example.demopetvet.service.ServicioService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("servicio")
@@ -25,13 +28,18 @@ public class ServicioController {
 
     @GetMapping
     public String selectAll(Model model) {
-        List<Servicio> servicios = service.selectAll(); 
+        List<Servicio> servicios = service.selectAll();
         NumberFormat formatoMoneda = NumberFormat.getCurrencyInstance(new Locale("es", "PE"));
+
         servicios.forEach(servicio -> {
-            String precioOriginal = servicio.getPrecio(); 
-            String precioFormateado = formatoMoneda.format(Double.parseDouble(precioOriginal)); 
-            servicio.setPrecio(precioFormateado);
+            String precioFormateado = formatoMoneda.format(servicio.getPrecio());
+            servicio.setPrecioFormateado(precioFormateado);
         });
+        // servicios.forEach(servicio -> {
+        //     String precioOriginal = servicio.getPrecio(); 
+        //     String precioFormateado = formatoMoneda.format(Double.parseDouble(precioOriginal)); 
+        //     servicio.setPrecio(precioFormateado);
+        // });
         model.addAttribute("servicios", servicios);
         return "intranet/servicio"; 
     }
@@ -45,7 +53,7 @@ public class ServicioController {
 
     // Guardar Servicio 
     @PostMapping("/guardar")
-    public String guardarServicio(Servicio servicio, BindingResult result) {
+    public String guardarServicio(@Valid @ModelAttribute("servicio") Servicio servicio, BindingResult result) {
         if (result.hasErrors()) {
             return "intranet/servicio_form"; 
         }

@@ -55,7 +55,7 @@
                         <td th:text="${s.id}"></td>
                         <td th:text="${s.nombre}"></td>
                         <td th:text="${s.descripcion}"></td>
-                        <td th:text="${s.precio}"></td>
+                        <td th:text="${s.precioFormateado}"></td>
                         <td>
                             <ul>
                                 <li th:each="detalle : ${s.detalles}" th:text="${detalle}"></li>
