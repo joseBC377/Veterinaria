@@ -32,23 +32,23 @@
                 
                 <label for="imagenUrl">URL de la Imagen</label>
                 <input type="text" class="form-control" th:field="*{imagen}" placeholder="Ingrese la URL de la imagen" required>
-                <div class="text-danger" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>
                 
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre del servicio" required>
-                <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                 
                 <label for="descripcion">Descripción</label>
                 <input type="text" class="form-control" th:field="*{descripcion}" placeholder="Descripción del servicio" required>
-                <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                 
                 <label for="precio">Precio</label>
                 <input type="number" class="form-control" th:field="*{precio}" placeholder="Precio del servicio" step="0.01" required>
-                <div class="text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
                 
                 <label for="detalles">Detalles</label>
                 <textarea class="form-control" th:field="*{detalles}" placeholder="Ingrese los detalles del servicio" required></textarea>
-                <div class="text-danger" th:if="${#fields.hasErrors('detalles')}" th:errors="*{detalles}"></div>
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('detalles')}" th:errors="*{detalles}"></div>
                 
                 <div class="text-center mt-3">
                     <button type="submit" class="btn-custom" style="text-decoration: none;" >Guardar</button>

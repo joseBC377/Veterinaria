@@ -33,17 +33,17 @@
                 <div class="form-group">
                     <label for="imagen" class="m-2">Imagen</label>
                     <input type="text" class="form-control" th:field="*{imagen}" required>
-                    <div class="text-danger" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>
                 </div>
                 <div class="form-group">
                     <label for="titulo" class="m-2">Título</label>
                     <input type="text" class="form-control" th:field="*{titulo}" required>
-                    <div class="text-danger" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
                 </div>
                 <div class="form-group">
                     <label for="precio" class="m-2">Precio</label>
                     <input type="number" class="form-control" th:field="*{precio}" step="0.01" required>
-                    <div class="text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
                 </div>
                 <div class="form-group">
                     <label for="categoria" class="m-2">Categoría</label>
@@ -51,7 +51,7 @@
                         <option th:if="${categorias.isEmpty()}" value="">No hay categorías disponibles</option>
                         <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
                     </select>
-                    <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
                 </div>
                 <div class="text-center mt-3">
                     <button type="submit" class="btn-custom" style="text-decoration: none;" th:disabled="${categorias.isEmpty()}">Aceptar</button>
