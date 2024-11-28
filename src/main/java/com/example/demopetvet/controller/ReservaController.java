@@ -17,6 +17,8 @@ import com.example.demopetvet.service.ClienteService;
 import com.example.demopetvet.service.ReservaService;
 import com.example.demopetvet.service.ServicioService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping("reserva")
 public class ReservaController {
@@ -59,6 +61,7 @@ public class ReservaController {
         List<Cliente> clientes = clienteService.selectAll();
         model.addAttribute("servicios", servicios);
         model.addAttribute("clientes", clientes);
+        
         // Validación para servicios
         if (servicios.isEmpty()) {
             model.addAttribute("mensajeErrorServicio", "Por favor, agregue servicios antes de crear una reserva.");
@@ -76,7 +79,7 @@ public class ReservaController {
 
     // Actualizar Reserva
     @PostMapping("guardar")
-    public String reservaGuardar(@ModelAttribute Reserva reserva, BindingResult result,  Model model) {
+    public String reservaGuardar(@Valid @ModelAttribute("reservas") Reserva reserva, BindingResult result,  Model model) {
         if (result.hasErrors()) {
             model.addAttribute("servicios",servicioService.selectAll());
             model.addAttribute("clientes",clienteService.selectAll());

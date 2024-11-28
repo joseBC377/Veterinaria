@@ -26,40 +26,46 @@
         <div class="container" style="margin: 2rem;">
             <a href="/reserva" class="btn-custom" style="text-decoration: none;">Regresar</a>
         </div>
-    <h1 style="text-align: center;">LISTA DE RESERVAS</h1>
+        <h1 style="text-align: center;">LISTA DE RESERVAS</h1>
         <hr />
         <div class="form-container">
             <form th:object="${reservas}" th:action="@{/reserva/guardar}" method="post">
                 <input type="hidden" class="form-control" readonly th:field="*{id}">
-        
+
                 <label for="fecha"><i class="far fa-calendar-alt icon"></i>Fecha</label>
                 <input type="date" class="form-control" th:field="*{fecha}" required>
-        
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
+
                 <label for="hora"><i class="far fa-clock icon"></i>Hora</label>
                 <input type="time" class="form-control" th:field="*{hora}" required>
-        
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}"></div>
+
                 <label for="veterinario"><i class="fas fa-user-md icon"></i>Veterinario</label>
                 <input type="text" class="form-control" th:field="*{veterinario}" required>
-        
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('veterinario')}"
+                    th:errors="*{veterinario}"></div>
+
                 <label for="clientes"><i class="fas fa-user icon"></i>Cliente</label>
                 <select th:field="*{cliente.id}" class="form-control" required>
-                    <option value="" disabled selected>Seleccione un cliente</option> 
-                    <option th:if="${clientes.isEmpty()}" value="">No hay clientes disponibles</option> 
-                    <option th:each="cliente : ${clientes}" 
-                            th:value="${cliente.id}" 
-                            th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></option>
+                    <option value="" disabled selected>Seleccione un cliente</option>
+                    <option th:if="${clientes.isEmpty()}" value="">No hay clientes disponibles</option>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+                        th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></option>
                 </select>
                 <label for="servicios"><i class="fas fa-stethoscope icon"></i>Servicio</label>
                 <select th:field="*{servicio.id}" class="form-control" required>
                     <option th:if="${servicios.isEmpty()}" value="">No hay servicios disponibles</option>
-                    <option th:each="servicio : ${servicios}" 
-                            th:value="${servicio.id}" 
-                            th:text="${servicio.nombre}"></option>
+                    <option th:each="servicio : ${servicios}" th:value="${servicio.id}" th:text="${servicio.nombre}">
+                    </option>
                 </select>
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn-custom" style="text-decoration: none;" 
-                            th:disabled="${clientes.isEmpty() || servicios.isEmpty()}">Guardar</button>
+                    <button type="submit" class="btn-custom" style="text-decoration: none;"
+                        th:disabled="${clientes.isEmpty() || servicios.isEmpty()}">Guardar</button>
+                    <div th:if="${clientes.isEmpty() || servicios.isEmpty()}" class="alert alert-danger mt-2">
+                        Asegúrese de que haya clientes y servicios disponibles antes de guardar.
+                    </div>
                 </div>
+
             </form>
         </div>
         <div class="container mt-3">
