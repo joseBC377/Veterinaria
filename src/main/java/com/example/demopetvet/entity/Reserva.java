@@ -28,20 +28,14 @@ public class Reserva {
     @Column(name = "Hora")
     private String hora; 
 
-    @Column(name = "ServicioID")
-    private Integer servicioId;
-
-    @Column(name = "ClienteID")
-    private Integer clienteId;
-
     @Column(name = "Veterinario")
     private String veterinario;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ServicioID", referencedColumnName = "ServicioID", insertable = false, updatable = false)
+    @JoinColumn(name = "ServicioID", referencedColumnName = "ServicioID")
     private Servicio servicio;
-
+    
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ClienteID", referencedColumnName = "ClienteID", insertable = false, updatable = false)
+    @JoinColumn(name = "ClienteID", referencedColumnName = "ClienteID")
     private Cliente cliente;
 }

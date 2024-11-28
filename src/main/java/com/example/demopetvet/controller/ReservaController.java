@@ -57,7 +57,8 @@ public class ReservaController {
     public String reservaInsertar(Model model) {
         List<Servicio> servicios = servicioService.selectAll();
         List<Cliente> clientes = clienteService.selectAll();
-
+        model.addAttribute("servicios", servicios);
+        model.addAttribute("clientes", clientes);
         // Validación para servicios
         if (servicios.isEmpty()) {
             model.addAttribute("mensajeErrorServicio", "Por favor, agregue servicios antes de crear una reserva.");
@@ -69,17 +70,16 @@ public class ReservaController {
         }
 
         model.addAttribute("reservas", new Reserva());
-        model.addAttribute("servicios", servicios);
-        model.addAttribute("clientes", clientes);
+
         return "intranet/reserva_form";
     }
 
     // Actualizar Reserva
     @PostMapping("guardar")
-    public String reservaGuardar(@ModelAttribute Reserva reserva, BindingResult result) {
+    public String reservaGuardar(@ModelAttribute Reserva reserva, BindingResult result,  Model model) {
         if (result.hasErrors()) {
-            // model.addAttribute("servicios",servicioService.selectAllWithSizeLog());
-            // model.addAttribute("clientes",)
+            model.addAttribute("servicios",servicioService.selectAll());
+            model.addAttribute("clientes",clienteService.selectAll());
             return "intranet/reserva_form";
         }
         service.insUpd(reserva);

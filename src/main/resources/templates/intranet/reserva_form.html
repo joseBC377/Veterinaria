@@ -42,7 +42,7 @@
                 <input type="text" class="form-control" th:field="*{veterinario}" required>
         
                 <label for="clientes"><i class="fas fa-user icon"></i>Cliente</label>
-                <select th:field="*{clienteId}" class="form-control" required>
+                <select th:field="*{cliente.id}" class="form-control" required>
                     <option value="" disabled selected>Seleccione un cliente</option> 
                     <option th:if="${clientes.isEmpty()}" value="">No hay clientes disponibles</option> 
                     <option th:each="cliente : ${clientes}" 
@@ -50,7 +50,7 @@
                             th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></option>
                 </select>
                 <label for="servicios"><i class="fas fa-stethoscope icon"></i>Servicio</label>
-                <select th:field="*{servicioId}" class="form-control" required>
+                <select th:field="*{servicio.id}" class="form-control" required>
                     <option th:if="${servicios.isEmpty()}" value="">No hay servicios disponibles</option>
                     <option th:each="servicio : ${servicios}" 
                             th:value="${servicio.id}" 

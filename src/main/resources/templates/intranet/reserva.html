@@ -46,9 +46,11 @@
                         <th>Reserva ID</th>
                         <th>Fecha</th>
                         <th>Hora</th>
-                        <th>Servicio ID</th> 
+                        <th>Servicio ID</th>
+                        <th>Nombre del servicio</th>
                         <th>Veterinario</th>
                         <th>Cliente ID</th> 
+                        <th>Nombre del cliente</th> 
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -61,8 +63,10 @@
                         <td th:text="${r.fecha}"></td>
                         <td th:text="${r.hora}"></td>
                         <td th:text="${r.servicio.id}"></td>
+                        <td th:text="${r.servicio.nombre}"></td>
                         <td th:text="${r.veterinario}"></td>
                         <td th:text="${r.cliente.id}"></td>
+                        <td th:text="${r.cliente.nombre}"></td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a th:href="@{/reserva/editar/{id}(id=${r.id})}" class="btn btn-warning btn-sm me-3">
