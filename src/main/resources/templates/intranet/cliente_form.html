@@ -27,34 +27,34 @@
     </header>
     <div class="container">
         <div class="text-right" style="margin: 2rem;">
-            <a href="/clientes" class="btn-custom" style="text-decoration: none;">Regresar</a>
+            <a href="/clientes" class="btn-custom" style="text-decoration: none;" >Regresar</a>
         </div>
         <hr />
         <div class="formulario-container">
             <form th:object="${cliente}" th:action="@{/clientes/guardar}" method="post" class="form-container">
                 <input type="hidden" th:field="*{id}">
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input  class="form-control" type="text" th:field="*{nombre}" required>
+                    <label for="nombre">Nombre Completo</label>
+                    <input  class="form-control" type="text" th:field="*{nombre}"  required>
                     <p class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
                 </div>
 
                 <div class="form-group">
-                    <label for="tipo">Apellido</label>
-                    <input  class="form-control" type="text" th:field="*{apellido}" required>
+                    <label for="tipo">Apellido Completo</label>
+                    <input  class="form-control" type="text" th:field="*{apellido}"  required>
                     <p class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></p>
                 </div>
 
                 <div class="form-group">
-                    <label for="tipo">Correo</label>
-                    <input  class="form-control" type="text" th:field="*{email}" required>
+                    <label for="tipo">Correo electronico</label>
+                    <input  class="form-control" type="text" th:field="*{email}" placeholder=" example@gamil.com" required>
                     <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                 </div>
                 <div class="alert alert-danger" th:if="${mensajeError}" th:text="${mensajeError}"></div>
 
                 <div class="form-group">
                     <label for="tipo">Teléfono</label>
-                    <input  class="form-control" type="number" th:field="*{telefono}" required>
+                    <input  class="form-control" type="number" th:field="*{telefono}" placeholder="123456789" required>
                     <p class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></p>
                 </div>
 
@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label for="tipo">Contraseña</label>
                     <!-- se bloqueó la contraseña para que no se actualice si se está editando un cliente existente  -->
-                    <input  class="form-control" type="password" th:field="*{contrasena}" th:disabled="${cliente.id != null}">
+                    <input  class="form-control" type="password" th:field="*{contrasena}" placeholder="*********" th:disabled="${cliente.id != null}">
                 </div>
 
                 <div class="text-center mt-3">

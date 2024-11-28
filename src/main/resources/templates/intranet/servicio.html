@@ -25,6 +25,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    
+    th,
+    td {
+        text-align: center;
+    }
 </style>
 
 <body>
@@ -38,27 +43,30 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-custom">
-                <thead class="thead-dark">
+            <table class="table table-custom">
+                <thead>
                     <tr>
-                        <th>Servicio ID</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Detalles</th>
-                        <th>Imagen</th>
-                        <th>Acciones</th>
+                        <th scope="col">Servicio ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Detalles</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col" colspan="2">Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="color: white; text-align: center;">
+                    <tr th:if="${#lists.isEmpty(servicios)}">
+                        <td colspan="7" class="text-center"> No hay servicios registrados actualmente</td>
+                    </tr>
                     <tr th:each="s : ${servicios}">
-                        <td th:text="${s.id}"></td>
-                        <td th:text="${s.nombre}"></td>
-                        <td th:text="${s.descripcion}"></td>
-                        <td th:text="${s.precioFormateado}"></td>
+                        <th>[[${s.id}]]</th>
+                        <td>[[${s.nombre}]]</td>
+                        <td class="truncate-text" title="[[${s.descripcion}]]">[[${s.descripcion}]]</td>
+                        <td>[[${s.precioFormateado}]]</td>
                         <td>
                             <ul>
-                                <li th:each="detalle : ${s.detalles}" th:text="${detalle}"></li>
+                                <li th:each="detalle : ${s.detalles}">[[${detalle}]]</li>
                             </ul>
                         </td>
                         <td>
@@ -66,17 +74,18 @@
                                  th:src="${s.imagen.startsWith('http') ? s.imagen : '' + s.imagen}"
                                  alt="Imagen de servicio" width="100"/>
                         </td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <a th:href="@{/servicio/editar/{id}(id=${s.id})}" class="btn btn-warning btn-sm me-3">
-                                    <i class="bi bi-pencil"></i> Editar
-                                </a>
-                                <a th:href="@{/servicio/eliminar/{id}(id=${s.id})}" class="btn btn-danger btn-sm"
-                                   onclick="return confirm('¿Seguro que deseas borrar?')">
-                                    <i class="bi bi-trash-fill"></i> Eliminar
-                                </a>
-                            </div>
+                        <td class="my-1">
+                            <a th:href="@{/servicio/editar/{id}(id=${s.id})}" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
                         </td>
+                        <td class="my-1">
+                            <a th:href="@{/servicio/eliminar/{id}(id=${s.id})}" class="btn btn-danger"
+                            onclick="return confirm('¿Seguro que deseas borrar?')">
+                             <i class="bi bi-trash-fill"></i> Eliminar
+                         </a>
+                        </td>
+                      
                     </tr>
                 </tbody>
                 

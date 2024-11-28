@@ -49,11 +49,11 @@
                         <th scope="col" colspan="2">Acciones</th>
                     </tr>
                 </thead>
-                <tbody style="color: white;">
+                <tbody style="color: white; text-align: center;">
                     <tr th:if="${#lists.isEmpty(edicionContactanos)}">
                         <td colspan="7" class="text-center">No realizastes mensajes todavia.</td>
                     </tr>
-                    <tr th:each="i : ${edicionContactanos}">
+                    <tr th:each="i : ${edicionContactanos}" >
                         <th scope="row">[[${i.id}]]</th>
                         <td>[[${i.nombre}]]</td>
                         <td>[[${i.apellido}]]</td>
