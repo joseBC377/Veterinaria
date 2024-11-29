@@ -49,6 +49,8 @@ public class ProductoController {
         return "intranet/producto";
     }
 
+   
+
     // Ir al formulario
     @GetMapping("nuevo")
     public String productoInsertar(Model model) {
@@ -110,4 +112,5 @@ public class ProductoController {
         service.delete(id);
         return "redirect:/producto";
     }
+
 }
