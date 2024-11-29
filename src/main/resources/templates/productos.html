@@ -36,23 +36,24 @@
         </div>
     </div>
     
-    <!-- <h2 class="text-center titulo-primario-productos m-4">Nuestros productos</h2>
+    <h2 class="text-center titulo-primario-productos m-4">Nuestros productos</h2>
     <main class="container my-3 container-items">
         <div class="row text-center">
-            <div class="col-12 col-md-6 col-lg-3 mb-4" th:each="producto : ${productos}">
+            <div class="col-12 col-md-6 col-lg-3 mb-4" th:each="p : ${productos}">
                 <div class="card">
-                    <img th:src="${producto.imagen}" class="card-img-top imagen-servicio" alt="${producto.titulo}">
+                    <img th:src="@{'/guardado/' + ${p.imagen}}" class="card-img-top imagen-servicio" alt="Imagen de ${p.titulo}">
                     <div class="card-body">
-                        <h4 class="titulo-secundario-productos" th:text="${producto.titulo}"></h4>
-                        <p class="numero-card" th:text="${producto.precio}"></p>
+                        <h4 class="titulo-secundario-productos" th:text="${p.titulo}"></h4>
+                        <p class="numero-card" th:text="${p.precioFormateado}"></p>
                         <button class="boton-compra">
-                            <i class="bi bi-cart-dash"> Comprar</i>
+                            <i class="bi bi-cart-dash"></i> Comprar
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-    </main> -->
+    </main>
+    
     <!-- FIN DE PRODUCTOS  -->
     <footer th:replace="~{/fragments/template :: footer}"></footer>
     <div th:replace="~{/fragments/template :: login-modal}"></div>

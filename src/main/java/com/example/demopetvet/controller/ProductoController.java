@@ -1,5 +1,8 @@
 package com.example.demopetvet.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demopetvet.entity.Categoria;
 import com.example.demopetvet.entity.Producto;
@@ -24,6 +29,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("producto")
 public class ProductoController {
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\guardado";
     @Autowired
     ProductoService service;
 
@@ -42,6 +48,8 @@ public class ProductoController {
         model.addAttribute("productos", productos);
         return "intranet/producto";
     }
+
+   
 
     // Ir al formulario
     @GetMapping("nuevo")
@@ -70,13 +78,30 @@ public class ProductoController {
         return "intranet/producto_form";
     }
 
-    // Procesar el formulario
     @PostMapping("guardar")
-    public String productoGuardar(@Valid @ModelAttribute("producto") Producto producto, BindingResult result, Model model) {
+    public String productoGuardar(
+            @Valid @ModelAttribute("producto") Producto producto,
+            @RequestParam("img") MultipartFile file,
+            BindingResult result,
+            Model model) {
         if (result.hasErrors()) {
             model.addAttribute("categorias", categoriaService.categoriaSel());
             return "intranet/producto_form";
         }
+
+        try {
+            StringBuilder fileNames = new StringBuilder();
+            Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
+            fileNames.append(file.getOriginalFilename());
+            Files.write(fileNameAndPath, file.getBytes());
+
+            producto.setImagen(file.getOriginalFilename());
+        } catch (Exception e) {
+            model.addAttribute("msg", "Error al subir la imagen: " + e.getMessage());
+            model.addAttribute("categorias", categoriaService.categoriaSel());
+            return "intranet/producto_form";
+        }
+
         service.insUpd(producto);
         return "redirect:/producto";
     }
@@ -87,4 +112,5 @@ public class ProductoController {
         service.delete(id);
         return "redirect:/producto";
     }
+
 }

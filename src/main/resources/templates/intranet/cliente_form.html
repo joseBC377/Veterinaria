@@ -27,7 +27,7 @@
     </header>
     <div class="container">
         <div class="text-right" style="margin: 2rem;">
-            <a href="/clientes" class="btn-custom" style="text-decoration: none;">Regresar</a>
+            <a href="/clientes" class="btn-custom" style="text-decoration: none;" >Regresar</a>
         </div>
         <hr />
         <div class="formulario-container">
@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label for="tipo">Contraseña</label>
                     <!-- se bloqueó la contraseña para que no se actualice si se está editando un cliente existente  -->
-                    <input  class="form-control" type="password" th:field="*{contrasena}" th:disabled="${cliente.id != null}">
+                    <input  class="form-control" type="password" th:field="*{contrasena}" placeholder="*********" th:disabled="${cliente.id != null}">
                 </div>
 
                 <div class="text-center mt-3">

@@ -45,30 +45,29 @@
             <table class="table table-custom">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Tipo de Mascota</th>
-                        <th>Acciones</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Tipo de Mascota</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody style="color: white;">
+                <tbody style="color: white; text-align: center;">
                     <tr th:if="${#lists.isEmpty(categorias)}">
                         <td  colspan="4" class="text-center">No hay Categorias disponibles.</td>
                     </tr>
                     <tr th:each="categoria : ${categorias}">
-                        <td th:text="${categoria.id}"></td>
-                        <td th:text="${categoria.nombre}"></td>
-                        <td th:text="${categoria.tipo}"></td>
-                        <td class="actions">
-                            <div class="d-flex justify-content-center">
-                                <a th:href="@{/categoria/editar/{id}(id=${categoria.id})}"
-                                    class="btn btn-warning btn-sm me-3"> <i class="bi bi-pencil"></i>Editar</a>
-                                <a th:href="@{/categoria/eliminar/{id}(id=${categoria.id})}"
-                                    class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')"><i
-                                        class="bi bi-trash-fill"></i>Eliminar</a>
-                            </div>
+                        <th scope="row" >[[${categoria.id}]]</th>
+                        <td>[[${categoria.nombre}]]</td>
+                        <td>[[${categoria.tipo}]]</td>
+                        <td  style="display: flex; justify-content: center; gap: 4.5rem;">
+                            <a th:href="@{/categoria/editar/{id}(id=${categoria.id})}"
+                            class="btn btn-warning"> <i class="bi bi-pencil"></i>Editar</a>
+                            <a th:href="@{/categoria/eliminar/{id}(id=${categoria.id})}"
+                            class="btn btn-danger"
+                            onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')"><i
+                                class="bi bi-trash-fill"></i>Eliminar</a>
                         </td>
+                        
                     </tr>
                 </tbody>
             </table>

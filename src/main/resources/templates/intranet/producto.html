@@ -55,41 +55,42 @@
             <table class="table table-custom">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Imagen</th>
-                        <th>Título</th>
-                        <th>Precio</th>
-                        <th>Categoría ID</th>
-                        <th>Nombre de la categoria</th>
-                        <th>Acciones</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Categoría ID</th>
+                        <th scope="col">Nombre de la categoria</th>
+                        <th scope="col" colspan="2">Acciones</th>
                     </tr>
                 </thead>
-                <tbody style="color: white;">
+                <tbody style="color: white; text-align: center;">
                     <tr th:if="${#lists.isEmpty(productos)}">
                         <td colspan="7" class="text-center">No hay productos disponibles.</td>
                     </tr>
                     <tr th:each="p : ${productos}">
                         <td th:text="${p.id}"></td>
                         <td>
-                            <img th:if="${p.imagen}"
-                                 th:src="${p.imagen.startsWith('http') ? p.imagen : '' + p.imagen}"
-                                 alt="Imagen de producto" width="100"/>
+                            <img class="img-thumbnail rounded float-left"
+                            th:src="@{'/guardado/' + ${p.imagen}}"
+                            th:alt="${p.imagen}"
+                            style="width: 80px; height: auto;">
                         </td>
                         
-                        <td th:text="${p.titulo}"></td>
-                        <td th:text="${p.precioFormateado}"></td>
-                        <td th:text="${p.categoria.id}"></td>
-                        <td th:text="${p.categoria.nombre}"></td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <a th:href="@{/producto/editar/{id}(id=${p.id})}" class="btn btn-warning btn-sm me-3">
-                                    <i class="bi bi-pencil"></i> Editar
-                                </a>
-                                <a th:href="@{/producto/eliminar/{id}(id=${p.id})}" class="btn btn-danger"
+                        <td>[[${p.titulo}]]</td>
+                        <td>[[${p.precioFormateado}]]</td>
+                        <td>[[${p.categoria.id}]]</td>
+                        <td>[[${p.categoria.nombre}]]</td>
+                        <td class="my-1">
+                            <a th:href="@{/producto/editar/{id}(id=${p.id})}" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
+                        </td>
+                        <td class="my-1">
+                            <a th:href="@{/producto/eliminar/{id}(id=${p.id})}" class="btn btn-danger"
                                     onclick="return confirm('Seguro que deseas borrar')">
-                                    <i class="bi bi-trash-fill"></i>Eliminar
+                                    <i class="bi bi-trash-fill"></i> Eliminar
                                 </a>
-                            </div>
                         </td>
                     </tr>
                 </tbody>

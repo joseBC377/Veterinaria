@@ -40,44 +40,40 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
+            <table class="table table-custom">
+                <thead>
                     <tr>
-                        <th>Reserva ID</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Servicio ID</th>
-                        <th>Nombre del servicio</th>
-                        <th>Veterinario</th>
-                        <th>Cliente ID</th> 
-                        <th>Nombre del cliente</th> 
-                        <th>Acciones</th>
+                        <th scope="col">Reserva ID</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Servicio ID</th> 
+                        <th scope="col">Veterinario</th>
+                        <th scope="col">Cliente ID</th> 
+                        <th scope="col" colspan="2">Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="color: white; text-align: center;">
                     <tr th:if="${#lists.isEmpty(reservas)}">
                         <td colspan="7" class="text-center">No hay reservas disponibles.</td>
                     </tr>
                     <tr th:each="r : ${reservas}">
-                        <td th:text="${r.id}"></td>
-                        <td th:text="${r.fecha}"></td>
-                        <td th:text="${r.hora}"></td>
-                        <td th:text="${r.servicio.id}"></td>
-                        <td th:text="${r.servicio.nombre}"></td>
-                        <td th:text="${r.veterinario}"></td>
-                        <td th:text="${r.cliente.id}"></td>
-                        <td th:text="${r.cliente.nombre}"></td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <a th:href="@{/reserva/editar/{id}(id=${r.id})}" class="btn btn-warning btn-sm me-3">
-                                    <i class="bi bi-pencil"></i> Editar
-                                </a>
-                                <a th:href="@{/reserva/eliminar/{id}(id=${r.id})}" class="btn btn-danger"
+                        <th scope="row">[[${r.id}]]</th>
+                        <td>[[${r.fecha}]]</td>
+                        <td>[[${r.hora}]]</td>
+                        <td>[[${r.servicio.id}]]</td>
+                        <td>[[${r.veterinario}]]</td>
+                        <td>[[${r.cliente.id}]]</td>
+                        <td class="my-1">
+                            <a th:href="@{/reserva/editar/{id}(id=${r.id})}" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
+                        </td>
+                        <td class="my-1">
+                            <a th:href="@{/reserva/eliminar/{id}(id=${r.id})}" class="btn btn-danger"
                                     onclick="return confirm('Seguro que deseas borrar')">
                                     <i class="bi bi-trash-fill"></i>Eliminar
                                 </a>
-                            </div>
-                        </td>
+                        </td >
                     </tr>
                 </tbody>
             </table>
