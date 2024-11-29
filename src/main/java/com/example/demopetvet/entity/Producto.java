@@ -28,7 +28,7 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @NotBlank(message = "La imagen es obligatoria")
+   // @NotBlank(message = "La imagen es obligatoria")
     @Column(name = "Imagen")
     String imagen;
 
@@ -57,5 +57,11 @@ public class Producto {
     public void setPrecioFormateado(String precioFormateado) {
         this.precioFormateado = precioFormateado;
     }
-
+    public String getImagen() {
+        return imagen;
+    }
+    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 }

@@ -71,9 +71,10 @@
                     <tr th:each="p : ${productos}">
                         <td th:text="${p.id}"></td>
                         <td>
-                            <img th:if="${p.imagen}"
-                                 th:src="${p.imagen.startsWith('http') ? p.imagen : '' + p.imagen}"
-                                 alt="Imagen de producto" width="100"/>
+                            <img class="img-thumbnail rounded float-left"
+                            th:src="@{'/guardado/' + ${p.imagen}}"
+                            th:alt="${p.imagen}"
+                            style="width: 80px; height: auto;">
                         </td>
                         
                         <td>[[${p.titulo}]]</td>
