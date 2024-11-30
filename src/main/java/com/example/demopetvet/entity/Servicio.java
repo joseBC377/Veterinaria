@@ -38,7 +38,7 @@ public class Servicio {
     @Column(name = "precio", nullable = false)
     private BigDecimal precio;
 
-    @NotBlank(message = "La imagen es obligatoria")
+    // @NotBlank(message = "La imagen es obligatoria")
     @Column(name = "imagen")
     private String imagen;
 

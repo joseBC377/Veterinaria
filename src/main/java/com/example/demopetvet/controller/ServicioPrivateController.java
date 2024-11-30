@@ -1,5 +1,8 @@
 package com.example.demopetvet.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demopetvet.entity.Servicio;
 import com.example.demopetvet.service.ServicioService;
@@ -21,7 +26,8 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("servicio")
-public class ServicioController {
+public class ServicioPrivateController {
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\guardadoServicio";
 
     @Autowired
     private ServicioService service;
@@ -35,15 +41,11 @@ public class ServicioController {
             String precioFormateado = formatoMoneda.format(servicio.getPrecio());
             servicio.setPrecioFormateado(precioFormateado);
         });
-        // servicios.forEach(servicio -> {
-        //     String precioOriginal = servicio.getPrecio(); 
-        //     String precioFormateado = formatoMoneda.format(Double.parseDouble(precioOriginal)); 
-        //     servicio.setPrecio(precioFormateado);
-        // });
+
         model.addAttribute("servicios", servicios);
         return "intranet/servicio"; 
     }
-    
+
     // Ir al formulario de nuevo servicio
     @GetMapping("nuevo")
     public String servicioInsertar(Model model) {
@@ -53,9 +55,25 @@ public class ServicioController {
 
     // Guardar Servicio 
     @PostMapping("/guardar")
-    public String guardarServicio(@Valid @ModelAttribute("servicio") Servicio servicio, BindingResult result) {
+    public String guardarServicio(
+        @Valid @ModelAttribute("servicio") Servicio servicio, @RequestParam("img") 
+        MultipartFile file, BindingResult result,
+        Model model) {
         if (result.hasErrors()) {
             return "intranet/servicio_form"; 
+        }
+
+        try {
+            StringBuilder fileNames = new StringBuilder();
+            Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
+            fileNames.append(file.getOriginalFilename());
+            Files.write(fileNameAndPath, file.getBytes());
+
+            servicio.setImagen(file.getOriginalFilename());
+        } catch (Exception e) {
+            model.addAttribute("msg", "Error al subir la imagen: " + e.getMessage());
+            model.addAttribute("categorias", service.selectAll());
+            return "intranet/servicio_form";
         }
         service.insUpd(servicio); 
         return "redirect:/servicio"; 

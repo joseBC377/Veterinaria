@@ -70,9 +70,10 @@
                             </ul>
                         </td>
                         <td>
-                            <img th:if="${s.imagen}"
-                                 th:src="${s.imagen.startsWith('http') ? s.imagen : '' + s.imagen}"
-                                 alt="Imagen de servicio" width="100"/>
+                            <img class="img-thumbnail rounded float-left"
+                            th:src="@{'/guardadoServicio/' + ${s.imagen}}"
+                            th:alt="${s.imagen}"
+                            style="width: 80px; height: auto;">
                         </td>
                         <td class="my-1">
                             <a th:href="@{/servicio/editar/{id}(id=${s.id})}" class="btn btn-warning">

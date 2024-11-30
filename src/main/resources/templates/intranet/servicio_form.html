@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 <head>
-    <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de productos')}"></th:block>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de servicios')}"></th:block>
     <link rel="stylesheet" href="/css/contactanos.css">
     <link rel="stylesheet" href="/css/about.css">
     <title>Mantenimiento</title>
@@ -27,12 +27,12 @@
         <h1 class="text-center mb-4">Lista de servicios</h1>
         <hr />
         <div class="form-container">
-            <form th:object="${servicio}" class="form-control" th:action="@{/servicio/guardar}" method="post">
+            <form th:object="${servicio}" class="form-control" th:action="@{/servicio/guardar}" method="post" enctype="multipart/form-data">
                 <input type="hidden" readonly th:field="*{id}">
                 
-                <label for="imagenUrl">URL de la Imagen</label>
-                <input type="text" class="form-control" th:field="*{imagen}" placeholder="Ingrese la URL de la imagen" required>
-                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>
+                <label class="m-2">Imagen</label>
+                <input type="file" class="form-control" name="img" accept="image/*" required>
+                <!-- <div class="text-danger" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div> -->                
                 
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre del servicio" required>

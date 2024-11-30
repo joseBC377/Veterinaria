@@ -28,7 +28,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("producto")
-public class ProductoController {
+public class ProductoPrivateController {
     public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\guardado";
     @Autowired
     ProductoService service;

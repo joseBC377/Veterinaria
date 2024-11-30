@@ -15,7 +15,7 @@ import com.example.demopetvet.service.ProductoService;
 
 @Controller
 
-public class productosController {
+public class ProductoPublicController {
     @Autowired
     ProductoService service;
     @Autowired
