@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
+
 <head>
     <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de servicios')}"></th:block>
     <link rel="stylesheet" href="/css/contactanos.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/productos.css">
+
     <title>Mantenimiento</title>
     <style>
         .form-container {
@@ -16,6 +19,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
@@ -24,34 +28,38 @@
         <div class="container" style="margin: 2rem;">
             <a href="/servicio" class="btn-custom" style="text-decoration: none;">Regresar</a>
         </div>
-        <h1 class="text-center mb-4">Lista de servicios</h1>
+        <h1 class="text-center mb-4 titulo-primario-productos">Editar servicios</h1>
         <hr />
         <div class="form-container">
             <form th:object="${servicio}" class="form-control" th:action="@{/servicio/guardar}" method="post" enctype="multipart/form-data">
                 <input type="hidden" readonly th:field="*{id}">
-                
-                <label class="m-2">Imagen</label>
-                <input type="file" class="form-control" name="img" accept="image/*" required>
-                <!-- <div class="text-danger" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div> -->                
-                
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre del servicio" required>
-                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
-                
-                <label for="descripcion">Descripción</label>
-                <input type="text" class="form-control" th:field="*{descripcion}" placeholder="Descripción del servicio" required>
-                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
-                
-                <label for="precio">Precio</label>
-                <input type="number" class="form-control" th:field="*{precio}" placeholder="Precio del servicio" step="0.01" required>
-                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
-                
-                <label for="detalles">Detalles</label>
-                <textarea class="form-control" th:field="*{detalles}" placeholder="Ingrese los detalles del servicio" required></textarea>
-                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('detalles')}" th:errors="*{detalles}"></div>
-                
+                <div class="form-group">
+                    <label class="m-2">Imagen</label>
+                    <input type="file" class="form-control" name="img" accept="image/*">
+                    <div class="mt-2" th:if="${imagenActual}">
+                        <p>Imagen actual:</p>
+                        <img th:src="@{/guardadoServicio/{imagen}(imagen=${imagenActual})}" alt="Imagen del servicio"style="width: 150px;">
+                    </div>
+                    <!-- <div class="text-danger" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div> -->
+                </div>
+                <div class="form-group"><label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre del servicio" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$" required>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                </div>
+                <div class="form-group"><label for="descripcion">Descripción</label>
+                    <input type="text" class="form-control" th:field="*{descripcion}" placeholder="Descripción del servicio" required>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+                </div>
+                <div class="form-group"><label for="precio">Precio</label>
+                    <input type="number" class="form-control" th:field="*{precio}" step="0.01" min="0" placeholder="Precio del servicio" required>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
+                </div>
+                <div class="form-group"><label for="detalles">Detalles</label>
+                    <textarea class="form-control" th:field="*{detalles}" placeholder="Ingrese los detalles del servicio" required></textarea>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('detalles')}" th:errors="*{detalles}"></div>
+                </div>
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn-custom" style="text-decoration: none;" >Guardar</button>
+                    <button type="submit" class="btn-custom" style="text-decoration: none;">Guardar</button>
                 </div>
             </form>
         </div>
@@ -61,4 +69,5 @@
     <div th:replace="~{/fragments/template :: register-modal}"></div>
     <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
 </body>
+
 </html>

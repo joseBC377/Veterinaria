@@ -27,7 +27,8 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("servicio")
 public class ServicioPrivateController {
-    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\guardadoServicio";
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir")
+            + "\\src\\main\\resources\\static\\guardadoServicio";
 
     @Autowired
     private ServicioService service;
@@ -43,54 +44,66 @@ public class ServicioPrivateController {
         });
 
         model.addAttribute("servicios", servicios);
-        return "intranet/servicio"; 
+        return "intranet/servicio";
     }
 
     // Ir al formulario de nuevo servicio
     @GetMapping("nuevo")
     public String servicioInsertar(Model model) {
-        model.addAttribute("servicio", new Servicio()); 
-        return "intranet/servicio_form"; 
+        model.addAttribute("servicio", new Servicio());
+        return "intranet/servicio_form";
     }
 
-    // Guardar Servicio 
-    @PostMapping("/guardar")
+    // Guardar Servicio
+    @PostMapping("guardar")
     public String guardarServicio(
-        @Valid @ModelAttribute("servicio") Servicio servicio, @RequestParam("img") 
-        MultipartFile file, BindingResult result,
-        Model model) {
+            @Valid @ModelAttribute("servicio") Servicio servicio,
+            @RequestParam(value = "img", required = false) MultipartFile file,
+            BindingResult result,
+            Model model) {
         if (result.hasErrors()) {
-            return "intranet/servicio_form"; 
+            model.addAttribute("servicios", service.selectAll());
+            return "intranet/servicio_form";
         }
 
         try {
-            StringBuilder fileNames = new StringBuilder();
-            Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
-            fileNames.append(file.getOriginalFilename());
-            Files.write(fileNameAndPath, file.getBytes());
-
-            servicio.setImagen(file.getOriginalFilename());
+            if (file != null && !file.isEmpty()) {
+                StringBuilder fileNames = new StringBuilder();
+                Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
+                fileNames.append(file.getOriginalFilename());
+                Files.write(fileNameAndPath, file.getBytes());
+                servicio.setImagen(file.getOriginalFilename());
+            } else if (servicio.getId() != null) {
+               // Recuperar la imagen existente si no se sube una nueva
+                Servicio servicioExistente = service.selectById(servicio.getId());
+                servicio.setImagen(servicioExistente.getImagen());
+            }
         } catch (Exception e) {
             model.addAttribute("msg", "Error al subir la imagen: " + e.getMessage());
-            model.addAttribute("categorias", service.selectAll());
+            model.addAttribute("servicios", service.selectAll());
             return "intranet/servicio_form";
         }
-        service.insUpd(servicio); 
-        return "redirect:/servicio"; 
+
+        service.insUpd(servicio);
+        return "redirect:/servicio";
     }
 
     // Ir al formulario de edición
     @GetMapping("editar/{id}")
     public String servicioEditar(Model model, @PathVariable Integer id) {
-        Servicio servicio = service.selectById(id); 
-        model.addAttribute("servicio", servicio); 
+        Servicio servicio = service.selectById(id);
+        if (servicio == null) {
+            servicio = new Servicio(); // Evita valores nulos o inválidos
+        }
+        model.addAttribute("servicio", servicio);
+        model.addAttribute("imagenActual", servicio.getImagen());
         return "intranet/servicio_form";
     }
 
     // Eliminar un servicio
     @GetMapping("eliminar/{id}")
     public String servicioEliminar(@PathVariable Integer id) {
-        service.delete(id); 
-        return "redirect:/servicio"; 
+        service.delete(id);
+        return "redirect:/servicio";
     }
 }

@@ -31,11 +31,7 @@ public class ServicioPublicController {
             String precioFormateado = formatoMoneda.format(servicio.getPrecio());
             servicio.setPrecioFormateado(precioFormateado);
         });
-        // servicios.forEach(servicio -> {
-        //     String precioOriginal = servicio.getPrecio(); 
-        //     String precioFormateado = formatoMoneda.format(Double.parseDouble(precioOriginal)); 
-        //     servicio.setPrecio(precioFormateado);
-        // });
+
         model.addAttribute("servicios", servicios);
         return "servicios"; 
     }
