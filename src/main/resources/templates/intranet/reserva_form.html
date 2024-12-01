@@ -2,9 +2,11 @@
 <html xmlns="http://www.thymeleaf.org">
 
 <head>
-    <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de productos')}"></th:block>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de reservas')}"></th:block>
     <link rel="stylesheet" href="/css/contactanos.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/productos.css">
+
     <title>Mantenimiento</title>
     <style>
         .form-container {
@@ -26,7 +28,7 @@
         <div class="container" style="margin: 2rem;">
             <a href="/reserva" class="btn-custom" style="text-decoration: none;">Regresar</a>
         </div>
-        <h1 style="text-align: center;">LISTA DE RESERVAS</h1>
+        <h1 class="text-center mb-4 titulo-primario-productos">Editar reservas</h1>
         <hr />
         <div class="form-container">
             <form th:object="${reservas}" th:action="@{/reserva/guardar}" method="post">

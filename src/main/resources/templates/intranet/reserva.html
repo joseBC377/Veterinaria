@@ -5,6 +5,8 @@
     <th:block th:insert="~{/fragments/template :: meta(titulo='Edición de mensajes')}"></th:block>
     <link rel="stylesheet" href="/css/contactanos.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/productos.css">
+
     <style>
         table > tbody {
             --bs-table-bg: #e6e1db;
@@ -34,7 +36,7 @@
     </header>
 
     <div class="container my-5">
-        <h1 class="text-center mb-4">Listado de Reservas</h1>
+        <h1 class="text-center mb-4 titulo-primario-productos">Listado de Reservas</h1>
         <div class="text-right mb-3">
             <a th:href="@{/reserva/nuevo}" class="btn-custom" style="text-decoration: none;">Agregar nueva reserva</a>
         </div>

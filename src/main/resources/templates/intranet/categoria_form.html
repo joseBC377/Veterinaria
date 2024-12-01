@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de productos')}"></th:block>
+    <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de categoria')}"></th:block>
     <title>Mantenimiento a Categoria</title>
     <link rel="stylesheet" href="/css/contactanos.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/productos.css">
+
     <style>
-        label {
-            font-weight: bold;
-        }
         .formulario-container {
             background: #e7d1b7;
             border-radius: 8px;
@@ -29,17 +28,18 @@
         <div class="text-right" style="margin: 2rem;">
             <a href="/categoria" class="btn-custom" style="text-decoration: none;">Regresar</a>
         </div>
+        <h1 class="text-center mb-4 titulo-primario-productos">Editar categoria</h1>
         <hr />
         <div class="formulario-container">
             <form th:object="${categoria}" th:action="@{/categoria/guardar}" method="post" class="form-container">
                 <input type="hidden" th:field="*{id}">
                 <div class="form-group">
-                    <label for="nombre">Nombre de la Categoría</label>
+                    <label class="m-2" for="nombre">Nombre de la Categoría</label>
                     <input  class="form-control" type="text" th:field="*{nombre}" required>
                     <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                 </div>
                 <div class="form-group">
-                    <label for="tipo">Tipo de Mascota</label>
+                    <label class="m-2" for="tipo">Tipo de Mascota</label>
                     <input  class="form-control" type="text" th:field="*{tipo}" required>
                     <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
                 </div>

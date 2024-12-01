@@ -6,6 +6,8 @@
     <title>Listado de productos</title>
     <link rel="stylesheet" href="/css/contactanos.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/productos.css">
+
 </head>
 <style>
     table > tbody {
@@ -46,7 +48,7 @@
         <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
     </header>
     <div class="container my-5">
-        <h1 class="text-center mb-4">Listado de Productos</h1>
+        <h1 class="text-center mb-4 titulo-primario-productos">Listado de Productos</h1>
         <div class="text-right mb-3">
             <a th:href="@{/producto/nuevo}" class="btn-custom"  style="text-decoration: none;">Agregar nuevo producto</a>
         </div>
