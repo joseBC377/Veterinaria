@@ -24,11 +24,6 @@ public class ProductoService {
                 .findById(id)
                 .orElse(new Producto());
     }
-
-    // // Obtener productos por categoría
-    // public List<Producto> obtenerProductosPorCategoria(Integer categoriaId) {
-    //     return repository.findByCategoriaId(categoriaId);
-    // }
     
     // INSERT - UPDATE
     public Producto insUpd(Producto producto) {

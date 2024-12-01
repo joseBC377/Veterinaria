@@ -49,8 +49,6 @@ public class ProductoPrivateController {
         return "intranet/producto";
     }
 
-   
-
     // Ir al formulario
     @GetMapping("nuevo")
     public String productoInsertar(Model model) {
@@ -75,36 +73,42 @@ public class ProductoPrivateController {
         }
         model.addAttribute("producto", producto);
         model.addAttribute("categorias", categoriaService.categoriaSel());
+        model.addAttribute("imagenActual", producto.getImagen());
         return "intranet/producto_form";
     }
 
     @PostMapping("guardar")
     public String productoGuardar(
             @Valid @ModelAttribute("producto") Producto producto,
-            @RequestParam("img") MultipartFile file,
+            @RequestParam(value = "img", required = false) MultipartFile file,
             BindingResult result,
             Model model) {
         if (result.hasErrors()) {
             model.addAttribute("categorias", categoriaService.categoriaSel());
             return "intranet/producto_form";
         }
-
+        
         try {
-            StringBuilder fileNames = new StringBuilder();
-            Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
-            fileNames.append(file.getOriginalFilename());
-            Files.write(fileNameAndPath, file.getBytes());
-
-            producto.setImagen(file.getOriginalFilename());
+            if (file != null && !file.isEmpty()) {
+                StringBuilder fileNames = new StringBuilder();
+                Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
+                fileNames.append(file.getOriginalFilename());
+                Files.write(fileNameAndPath, file.getBytes());
+                producto.setImagen(file.getOriginalFilename());
+            } else if (producto.getId() != null) {
+                // Recuperar la imagen existente si no se sube una nueva
+                Producto productoExistente = service.selectById(producto.getId());
+                producto.setImagen(productoExistente.getImagen());
+            }
         } catch (Exception e) {
             model.addAttribute("msg", "Error al subir la imagen: " + e.getMessage());
             model.addAttribute("categorias", categoriaService.categoriaSel());
             return "intranet/producto_form";
         }
-
+    
         service.insUpd(producto);
         return "redirect:/producto";
-    }
+    }    
 
     // Eliminar
     @GetMapping("eliminar/{id}")

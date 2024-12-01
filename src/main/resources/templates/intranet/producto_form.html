@@ -5,6 +5,8 @@
     <th:block th:insert="~{/fragments/template :: meta(titulo='Mantenimiento de productos')}"></th:block>
     <link rel="stylesheet" href="/css/contactanos.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/productos.css">
+
     <title>Mantenimiento</title>
     <style>
         .form-container {
@@ -26,13 +28,18 @@
         <div class="container" style="margin: 2rem;">
             <a href="/producto" class="btn-custom" style="text-decoration: none;">Regresar</a>
         </div>
+        <h1 class="text-center mb-4 titulo-primario-productos">Editar productos</h1>
         <hr />
         <div class="form-container">
             <form th:object="${producto}" th:action="@{/producto/guardar}" method="post" enctype="multipart/form-data">
                 <input type="hidden" readonly th:field="*{id}">
                 <div class="form-group">
                     <label class="m-2">Imagen</label>
-                    <input type="file" class="form-control" name="img" accept="image/*" required>
+                    <input type="file" class="form-control" name="img" accept="image/*">
+                    <div class="mt-2" th:if="${imagenActual}">
+                        <p>Imagen actual:</p>
+                        <img th:src="@{/guardado/{imagen}(imagen=${imagenActual})}" alt="Imagen del producto" style="width: 150px;">
+                    </div>
                     <!-- <div class="text-danger" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div> -->
                 </div>
                 <div class="form-group">
@@ -42,7 +49,7 @@
                 </div>
                 <div class="form-group">
                     <label for="precio" class="m-2">Precio</label>
-                    <input type="number" class="form-control" th:field="*{precio}" step="0.01" required>
+                    <input type="number" class="form-control" th:field="*{precio}" step="0.01" min="0" required>
                     <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
                 </div>
                 <div class="form-group">
