@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template_intranet :: meta(titulo='Administrador')}"></th:block>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_intranet :: nav}"></nav>
+    </header>
+    <h1>Bienvenido admin</h1>
+    <!-- <footer th:replace="~{/fragments/template :: footer}"></footer> -->
+    <!-- <div th:replace="~{/fragments/template :: login-modal}"></div>
+    <div th:replace="~{/fragments/template :: register-modal}"></div> -->
+    <!-- <div th:replace="~{/fragments/template :: scripts-temporal}"></div> -->
+    <hr>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Cerrar sesión - POST</button>
+    </form>
+</body>
+
+</html>

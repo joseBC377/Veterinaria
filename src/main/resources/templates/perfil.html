@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{/fragments/template_cliente :: meta(titulo='Cliente')}"></th:block>
+    <title>Página para el cliente</title>
+</head>
+<body>
+    <header>
+        <nav th:replace="~{/fragments/template_cliente :: nav}"></nav>
+    </header>
+    <h3>Perfil cliente</h3>
+    <!-- <hr>
+    <a th:href="@{/logout}">Cerrar sesión - GET</a> -->
+    <hr>
+    <!-- <form th:action="@{/logout}" method="post">
+        <button type="submit">Cerrar sesión - POST</button>
+    </form> -->
+</body>
+</html>
