@@ -42,28 +42,14 @@
                             <a class="nav-link mx-lg-2" href="/index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="clientes">Gestión Clientes</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link mx-lg-2" href="productos">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="producto">Gestión Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="categoria">Getión Categoria</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mx-lg-2" href="servicios">Servicios</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="servicio">Gestión Servicios </a>
-                        </li>
+                        <!-- lo manda a loguearse para reservaar  -->
                         <li class="nav-item">
                             <a class="nav-link mx-lg-2" href="reservas">Reserva</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="reserva">Gestión Reservas </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mx-lg-2" href="about">Sobre Nosotros</a>
@@ -95,8 +81,6 @@
                     </div>
                 </div>
             </div>
-
-            </button>
             <button class="login-button d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#login-modal">
                 <i class="bi bi-person-circle"></i>
                 Iniciar sesión
@@ -162,8 +146,9 @@
         <div class="row text-center">
             <p>Petlove. &copy 2024 </p>
     </footer>
+    <!-- Tu formulario ya está configurado, pero asegúrate de que se active el modal con un mensaje si es necesario -->
     <div th:fragment="login-modal">
-        <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal" aria-hidden="true" style="overflow: hidden;">
+        <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -174,7 +159,7 @@
                         <div class="text-center mb-3">
                             <img src="/Multimedia/Home/imagen_login.jpeg" width="230px" height="200px" alt="Logo">
                         </div>
-                        <form class="mb-4">
+                        <form action="/login" method="post" class="mb-4">
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
                                 <div class="form-floating">
@@ -185,12 +170,12 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
                                 <div class="form-floating">
-                                    <input type="current-password" class="form-control" id="clave1" placeholder="Clave">
+                                    <input type="password" class="form-control" id="clave1" placeholder="Clave">
                                     <label for="clave1">Contraseña</label>
                                 </div>
                             </div>
                             <div class="text-center mb-3">
-                                <button type="button" class="login-button" style="font-size: 1.2rem;">Iniciar sesión</button>
+                                <button type="submit" class="login-button" style="font-size: 1.2rem;">Iniciar sesión</button>
                             </div>
                         </form>
                     </div>
@@ -215,7 +200,7 @@
                         <div class="text-center mb-3">
                             <img src="/Multimedia/Home/imagen_login.jpeg" width="230px" height="200px" alt="Logo">
                         </div>
-                        <form class="mb-4">
+                        <form action="/registrarse" method="post" class="mb-4">
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="bi bi-person"></i></span>
                                 <div class="form-floating">
