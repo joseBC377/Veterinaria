@@ -37,4 +37,8 @@ public class ClienteService {
         }
         return String.format("ID: %d no encontrado", id);
     }
+
+    public Cliente buscarCorreo(String email){
+        return repository.findByEmail(email);
+    }
 }

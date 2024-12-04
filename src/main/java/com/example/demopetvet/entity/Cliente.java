@@ -53,4 +53,7 @@ public class Cliente {
     // Spring security 
     @Column(name = "Contrasena")
     String contrasena;
+    
+    @Column(name = "rol")
+    String rol;
 }
