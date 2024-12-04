@@ -9,6 +9,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        // PAGINA PARA TODOS
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/about").setViewName("about");
         registry.addViewController("/reservas").setViewName("reservas");
@@ -17,7 +18,23 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/productos").setViewName("productos");   
         registry.addViewController("/productos_gatos").setViewName("productos_gatos");
         registry.addViewController("/productos_perros").setViewName("productos_perros");   
-        registry.addViewController("/producto_otras_mascotas").setViewName("producto_otras_mascotas");   
-    }
+        registry.addViewController("/producto_otras_mascotas").setViewName("producto_otras_mascotas");  
+        
+        registry.addViewController("/perfil").setViewName("perfil");  // ADMIN - // CLIENT
+        //VISTA ADMIN--ACA ES DONDE SE GESTIONAN LOS CRUD
+       registry.addViewController("/categoria_form").setViewName("categoria_form");   //ADMIN
+       registry.addViewController("/categoria_form").setViewName("categoria_form");   //ADMIN
+       registry.addViewController("/categoria").setViewName("categoria");   //ADMIN
+       registry.addViewController("/cliente_form").setViewName("cliente_form");  //ADMIN
+       registry.addViewController("/clientes").setViewName("clientes");  //ADMIN
+       registry.addViewController("/contacto_form").setViewName("contacto_form");  //ADMIN
+       registry.addViewController("/producto_form").setViewName("producto_form");  //ADMIN
+       registry.addViewController("/producto").setViewName("producto");  //ADMIN
+       registry.addViewController("/reserva_form").setViewName("reserva_form");  //ADMIN
+       registry.addViewController("/reserva").setViewName("reserva");  //ADMIN
+       registry.addViewController("/servicio_form").setViewName("servicio_form");  //ADMIN
+       registry.addViewController("/servicio").setViewName("servicio");  //ADMIN
 
+        registry.addRedirectViewController("/", "/index");
+    }
 }
