@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="meta(titulo)">
     <meta charset="UTF-8">
@@ -16,9 +16,8 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index">
-                <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" width="45" height="45"
-                    class="d-inline-block align-text-top">
+            <a class="navbar-brand" th:href="${homeUrl}">
+                <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
                 Petlove
             </a>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
@@ -63,18 +62,18 @@
             </div>
 
             </button>
-            <button class="login-button d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#login-modal">
-                <i class="bi bi-person-circle"></i>
-                Iniciar sesión
-            </button>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <form th:action="@{/logout}" method="post">
+                <button class="login-button d-none d-lg-block" type="submit">Cerrar sesión</button>
+            </form>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
         </div>
     </nav>
     <div th:fragment="scripts-temporal">
         <script src='/javascript/reserva.js'></script>
     </div>
 </body>
-</html>
+</html> -->

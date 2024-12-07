@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{/fragments/template:: meta(titulo='Pedido')}"></th:block>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/pedido.css">
+    <link rel="stylesheet" href="/css/impresion.css">
+    <script src="https://kit.fontawesome.com/c353473263.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+    <header sec:authorize="isAuthenticated() && !hasAuthority('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="hasAuthority('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
+    <main class="container mt-4">
+        <div class="row">
+            <a href="/productos" class="mb-3 d-flex align-items-center" style="color: #8B4513; text-decoration: none;">
+                <i class="bi bi-arrow-left-circle-fill me-2"></i> Volver a productos
+            </a>
+            <div class="col-lg-7" id="cart-section">
+                <h4 style="color: #732F2F;">Carrito de Compras</h4>
+                <div id="cart-items-container">
+                </div>
+            </div>
+            <div class="col-lg-5" id="summary-section">
+                <h5>Resumen</h5>
+                <div class="summary">
+                    <div class="d-flex justify-content-between">
+                        <p>Subtotal</p>
+                        <p id="subtotal">S/. 0.00</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h5>Total</h5>
+                        <h5 id="total">S/. 0.00</h5>
+                    </div>
+                    <button id="procesar-pago" onclick="mostrarFormularioPago()" class="login-button w-100">Proceder al
+                        pago</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario de Pago -->
+        <div id="payment-section" style="display: none;" class="container">
+            <div class="card" style="max-width: 600px; margin: 0 auto;">
+                <div class="card-header">
+                    <h5>
+                        <span class="badge bg-danger rounded-circle me-2">1</span>
+                        Formulario de Pago
+                    </h5>
+                    <p class="text-muted">Por favor, complete la información para confirmar su compra.</p>
+                </div>
+                <div class="card-body">
+                    <form id="payment-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre completo</label>
+                            <input type="text" class="form-control input-largo" id="name" name="name" required
+                                minlength="3" />
+                            <div class="invalid-feedback">
+                                El nombre debe tener al menos 3 caracteres.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control input-largo" id="email" name="email" required />
+                            <div class="invalid-feedback">
+                                Por favor, ingresa un correo electrónico válido.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Dirección de envío</label>
+                            <input type="text" class="form-control input-largo" id="address" name="address" required />
+                            <div class="invalid-feedback">
+                                La dirección de envío es obligatoria.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="card-number" class="form-label">Número de tarjeta</label>
+                            <input type="text" class="form-control input-largo" id="card-number" maxlength="16"
+                                name="card-number" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="expiration" class="form-label">Fecha de expiración</label>
+                                <input type="text" class="form-control" id="expiration" name="expiration" required
+                                    pattern="\d{2}/\d{2}" />
+                                <div class="invalid-feedback">
+                                    El formato de la fecha de expiración debe ser MM/AA.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cvv" class="form-label">CVV</label>
+                                <input type="text" class="form-control" id="cvv" name="cvv" required maxlength="3" />
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="terms" required />
+                            <label class="form-check-label" for="terms">
+                                He leído y acepto los <a href="#" class="text-primary">Términos y Condiciones</a> y <a
+                                    href="#" class="text-primary">Políticas de privacidad</a>.
+                            </label>
+                            <div class="invalid-feedback">
+                                Debes aceptar los términos y condiciones para continuar.
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="marketing" />
+                            <label class="form-check-label" for="marketing">
+                                Autorizo el tratamiento de mis datos para fines comerciales.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary login-button w-100">Confirmar Compra</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumen de Compra -->
+        <div id="purchase-summary" style="display: none;" class="container confirmation-container text-center">
+            <i class="fas fa-check-circle check-icon"></i>
+            <h2>¡Gracias por tu compra!</h2>
+            <p class="text-muted">Tu solicitud de compra fue recibida</p>
+            <p class="text-muted">Tu pedido se encuentra en proceso de validación, en breve recibirás un correo con el
+                detalle de tu compra.</p>
+
+            <!-- Información del resumen -->
+            <p><strong>Pedido:</strong> <span id="summary-order-id">0V01-00000001</span></p>
+            <div class="row" style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                <h2>Resumen de Compra</h2>
+                <p><strong>Nombre:</strong> <span id="summary-name"></span></p>
+                <p><strong>Correo electrónico:</strong> <span id="summary-email"></span></p>
+                <p><strong>Dirección:</strong> <span id="summary-address"></span></p>
+                <h2>Genere su reporte de compra</h2>
+                <div class="button-container">
+                    <button class="boton-pdf" id="generate-pdf" onclick="generatePDF()">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Contenedor para el PDF -->
+            <div id="pdf-content" style="display: none; padding: 20px; width: 100%; height: 100%;">
+                <!-- Logo -->
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="/Multimedia/Home/logo_petlove.png" alt="Logo Veterinaria" style="max-width: 150px;">
+                    <h2 style="color: #732F2F;">Resumen de Compra</h2>
+                </div>
+                <!-- Datos del cliente -->
+                <div style="margin-bottom: 20px; width: 100%;">
+                    <h4 style="color: #732F2F; border-bottom: 2px solid #732F2F; display: inline-block;">Datos del
+                        Cliente</h4>
+                    <p><strong>Nombre:</strong> <span id="pdf-client-name"></span></p>
+                    <p><strong>Correo Electrónico:</strong> <span id="pdf-client-email"></span></p>
+                    <p><strong>Dirección:</strong> <span id="pdf-client-address"></span></p>
+                </div>
+                <!-- Tabla de productos -->
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #732F2F; padding: 10px; background: #E7D7C1; color: #732F2F;">
+                                Producto</th>
+                            <th style="border: 1px solid #732F2F; padding: 10px; background: #E7D7C1; color: #732F2F;">
+                                Cantidad</th>
+                            <th style="border: 1px solid #732F2F; padding: 10px; background: #E7D7C1; color: #732F2F;">
+                                Precio Unitario</th>
+                            <th style="border: 1px solid #732F2F; padding: 10px; background: #E7D7C1; color: #732F2F;">
+                                Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pdf-products">
+                    </tbody>
+                </table>
+                <!-- Total -->
+                <div style="margin-top: 20px; text-align: right; width: 100%;">
+                    <h4 style="color: #732F2F;">Total: S/. <span id="pdf-total"></span></h4>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <footer th:replace="~{/fragments/template :: footer}"></footer>
+    <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</body>
+
+</html>

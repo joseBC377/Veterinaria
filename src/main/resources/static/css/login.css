@@ -1,0 +1,143 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  background-color: #EFF2F1;
+}
+
+.image-section {
+  flex: 1;
+  position: relative;
+  background-image: url('/Multimedia/login/fondo_login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 1.2rem; 
+  padding: 10px;
+  border-radius: 8px;
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  max-width: 90%;
+}
+
+.form-section {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 20px; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.form-section img {
+  display: block;
+  margin: 0 auto 20px;
+  width: 180px;
+}
+
+.form-section h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #595d6e;
+}
+
+.login-button {
+  background-color: #732F2F;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 26px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #5a2424;
+}
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.form-footer a {
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .image-section {
+    height: 40vh;
+  }
+
+  .form-section {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 1010px) {
+  body {
+    flex-direction: column;
+  }
+
+  .image-section {
+    height: 50vh;
+  }
+
+  .text-overlay {
+    font-size: 1.5rem;
+  }
+  .form-section {
+    max-width: 90%;
+    padding: 10px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-section {
+    height: auto;
+  }
+
+  .text-overlay {
+    font-size: 0.8rem;
+  }
+
+  .login-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}

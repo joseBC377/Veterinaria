@@ -78,7 +78,50 @@
 .nav-link.active {
     font-weight: 650;
 }
+.titulo{
+    color: #732F2F;
+}
+ .colorad {
+  color: #732F2F;
+  font-size: 1.8rem;
+}
 
+.description {
+  font-size: 1rem;
+}
+    .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 20px;
+  align-items: start;
+  margin: 10px 0;
+}
+
+.btn-marron {
+  background-color: #732F2F;
+  color: white;
+  border: none;
+  text-decoration: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-marron:hover {
+  transform: scale(1.1);
+  background-color: #732F2F;
+  color: white;
+}
+    .left-column a,
+.right-column a {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; 
+  }
+}
 @media screen and (max-width:1281px) {
     .seccion-izquierda>a {
         margin: 0 60px;

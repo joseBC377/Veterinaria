@@ -6,16 +6,17 @@
 </head>
 
 <body>
-<header>
-    <nav th:replace="~{/fragments/template :: nav}"></nav>
-</header>
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="hasRole('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
+    
 <h2 class="text-center titulo-primario-servicio m-4">Nuestros Servicios</h2>
 
 <main class="container my-3">
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-4" th:each="servicio : ${servicios}">
             <div class="card h-100">
-                <img th:src="@{'/guardadoServicio/' + ${servicio.imagen}}" class="imagen-servicio card-img-top" alt="Imagen del servicio">
+                <img th:src="@{'/guardadoServicio/' + ${servicio.imagen}}" class="card-img-top" alt="Imagen del servicio">
                 <h4 class="titulo-secundario-servicio" th:text="${servicio.nombre}"></h4>
                 <div class="card-body">
                     <p class="card-text" th:text="${servicio.descripcion}"></p>
@@ -37,8 +38,6 @@
 </main>
 
 <footer th:replace="~{/fragments/template :: footer}"></footer>
-<div th:replace="~{/fragments/template :: login-modal}"></div>
-<div th:replace="~{/fragments/template :: register-modal}"></div>
 <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
 </body>
 </html>

@@ -11,19 +11,20 @@ import com.example.demopetvet.repository.ClienteRepository;
 import com.example.demopetvet.utils.CustomUser;
 
 @Service
-public class CustomUserService implements UserDetailsService{
+public class CustomUserService implements UserDetailsService {
 
-    @Autowired    
+    @Autowired
     ClienteRepository repository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Cliente cliente = repository.findByEmail(username); 
-        if(cliente == null){
-            System.out.println("No coincide");
+        Cliente cliente = repository.findByEmail(username);
+        if (cliente == null) {
+            System.out.println("Usuario no encontrado: " + username);
             throw new UsernameNotFoundException("Usuario no encontrado");
         }
-        // System.out.println(empleado.getCorreo());
-        return (UserDetails) new CustomUser(cliente);
+        System.out.println("Usuario encontrado: " + cliente.getEmail() + ", Rol: " + cliente.getRol());
+        return new CustomUser(cliente);
     }
 
 }

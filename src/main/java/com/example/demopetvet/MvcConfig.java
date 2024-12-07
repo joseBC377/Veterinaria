@@ -6,11 +6,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
-
+//@SuppressWarnings("null")
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // PAGINA PARA TODOS
-        registry.addViewController("/index").setViewName("index");
+        //client
+        registry.addViewController("/").setViewName("index");
         registry.addViewController("/about").setViewName("about");
         registry.addViewController("/reservas").setViewName("reservas");
         // registry.addViewController("/contactanos").setViewName("contactanos");
@@ -19,8 +19,12 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/productos_gatos").setViewName("productos_gatos");
         registry.addViewController("/productos_perros").setViewName("productos_perros");   
         registry.addViewController("/producto_otras_mascotas").setViewName("producto_otras_mascotas");  
-        
-        registry.addViewController("/perfil").setViewName("perfil");  // ADMIN - // CLIENT
+        registry.addViewController("/perfil").setViewName("perfil"); // CLIENT
+        registry.addViewController("/intranet_usuario").setViewName("intranet_usuario");  // ADMIN - // CLIENT
+        registry.addViewController("/error403").setViewName("error403");  // ADMIN - // CLIENT
+        registry.addViewController("/intranet").setViewName("intranet");  // ADMIN 
+        registry.addViewController("/pedido").setViewName("pedido");
+        registry.addViewController("/registro").setViewName("registro");  // ADMIN - // CLIENT
         //VISTA ADMIN--ACA ES DONDE SE GESTIONAN LOS CRUD
        registry.addViewController("/categoria_form").setViewName("categoria_form");   //ADMIN
        registry.addViewController("/categoria_form").setViewName("categoria_form");   //ADMIN

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="meta(titulo)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,13 +15,13 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" th:fragment="header_cliente">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index">
-                <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" width="45" height="45"
-                    class="d-inline-block align-text-top">
+            <a class="navbar-brand" th:href="${homeUrl}">
+                <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
                 Petlove
             </a>
+            
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
@@ -31,11 +32,9 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="login-button  d-lg-none" type="button" data-bs-toggle="modal"
-                                data-bs-target="#login-modal">
-                                <i class="bi bi-person-circle"></i>
-                                Iniciar sesión
-                            </a>
+                            <form th:action="@{/logout}" method="post">
+                                <button class="login-button  d-lg-none" type="submit">Cerrar sesión</button>
+                            </form>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mx-lg-2" href="/index">Inicio</a>
@@ -47,17 +46,18 @@
                             <a class="nav-link mx-lg-2" href="servicios">Servicios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="reservas">Reserva</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link mx-lg-2" href="about">Sobre Nosotros</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mx-lg-2" href="contactanos">Contáctanos</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="/perfil">Perfil</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="ms-auto ">
+            <div class="ms-auto">
                 <div class="container-icon">
                     <div class="container-cart-icon login-compras">
                         <i class="bi bi-bag boton-tienda"></i>
@@ -68,37 +68,33 @@
 
                     <div class="countainer-cart-products hidden-cart">
                         <div class="row-product">
-
                         </div>
-
                         <div class="cart-total">
                             <h4>Total:</h4>
                             <span class="total-pagar">S/.0.00</span>
-
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- BOTON PARA CERRAR SESION, SI FUNCIONA -->
             <form th:action="@{/logout}" method="post">
                 <button class="login-button d-none d-lg-block" type="submit">Cerrar sesión</button>
             </form>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         </div>
     </nav>
-    <footer class="contenido-footer comtainer-fluid ">
-        <div class="row ">
-            <div class="col-12 col-sm-6 col-lg-3 p-2 p-sm-3 p-lg-3 ">
-                <div class="row columna1 ">
+
+    <footer class="contenido-footer container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3 p-2 p-sm-3 p-lg-3">
+                <div class="row columna1">
                     <div class="col-12">
                         <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" class="logo-footer">
                     </div>
-
                     <div class="col-12">
-                        <p>Siguenos en:</p>
+                        <p>Síguenos en:</p>
                     </div>
                     <div class="col-12">
                         <i class="bi bi-facebook"></i>
@@ -108,8 +104,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-3 p-2 p-sm-3 p-lg-3 ">
-                <h6> ENLACES RÁPIDOS </h6>
+            <div class="col-12 col-sm-6 col-lg-3 p-2 p-sm-3 p-lg-3">
+                <h6>ENLACES RÁPIDOS</h6>
                 <ul class="list-unstyled">
                     <li><a href="index">Inicio</a></li>
                     <li><a href="productos">Productos</a></li>
@@ -120,7 +116,7 @@
             </div>
             <div class="col-12 col-sm-6 col-lg-3 p-2 p-sm-3 p-lg-3">
                 <h6>SERVICIOS</h6>
-                <ul class="list-unstyled ">
+                <ul class="list-unstyled">
                     <li>Vacunación</li>
                     <li>Desparasitación</li>
                     <li>Diagnóstico</li>
@@ -131,7 +127,7 @@
             </div>
             <div class="col-12 col-sm-6 col-lg-3 p-2 p-sm-3 p-lg-3">
                 <h6 class="text-center">CONTÁCTANOS</h6>
-                <ul class="list-unstyled ">
+                <ul class="list-unstyled">
                     <li>Dirección: Av. Javier Prado Este 4930, Surco, Lima</li>
                     <li>Fijo: (01) 721-9163</li>
                     <li>Teléfono: +51 938 344 498</li>
@@ -143,9 +139,19 @@
         <hr class="my-3">
         <div class="row text-center">
             <p>Petlove. &copy 2024 </p>
+        </div>
     </footer>
+
     <div th:fragment="scripts-temporal">
-        <script src='/javascript/reserva.js'></script>
+        <script src="/javascript/modal_carrito.js"></script>
+        <script src="/javascript/navegacion.js"></script>
+        <script src="/javascript/funcion_comprar.js"></script>
+        <script src="/javascript/productos_gatos.js"></script>
+        <script src="/javascript/productos_perros.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
     </div>
+
 </body>
 </html>

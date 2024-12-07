@@ -9,19 +9,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.demopetvet.entity.Cliente;
 
-public class CustomUser implements UserDetails{
-    
+public class CustomUser implements UserDetails {
+
     public Cliente cliente;
- 
+
     public CustomUser(Cliente cliente) {
         this.cliente = cliente;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(cliente.getRol());
+        String prefixedRole = "ROLE_" + cliente.getRol();
+        System.out.println("Rol generado: " + prefixedRole);
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(prefixedRole);
         return Arrays.asList(authority);
-    }  
+    }
+
     @Override
     public String getPassword() {
         return cliente.getContrasena();
@@ -30,5 +33,5 @@ public class CustomUser implements UserDetails{
     @Override
     public String getUsername() {
         return cliente.getEmail();
-    }    
+    }
 }

@@ -21,9 +21,10 @@
 </head>
 
 <body>
-    <header>
-        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
-    </header>
+    <header sec:authorize="hasRole('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
+    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')"th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+
     <div class="container">
         <div class="text-right" style="margin: 2rem;">
             <a href="/categoria" class="btn-custom" style="text-decoration: none;">Regresar</a>
@@ -50,8 +51,6 @@
         </div>
     </div>
     <footer th:replace="~{/fragments/template :: footer}"></footer>
-    <div th:replace="~{/fragments/template :: login-modal}"></div>
-    <div th:replace="~{/fragments/template :: register-modal}"></div>
     <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
 </body>
 

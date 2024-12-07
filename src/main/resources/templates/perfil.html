@@ -7,15 +7,14 @@
     <title>Página para el cliente</title>
 </head>
 <body>
-    <header>
-        <nav th:replace="~{/fragments/template_cliente :: nav}"></nav>
-    </header>
-    <h3>Perfil cliente</h3>
-    <!-- <hr>
-    <a th:href="@{/logout}">Cerrar sesión - GET</a> -->
-    <hr>
-    <!-- <form th:action="@{/logout}" method="post">
-        <button type="submit">Cerrar sesión - POST</button>
-    </form> -->
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="hasRole('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
+    <h1>Bienvenido, <span th:text="${#authentication.name}"></span></h1>
+    <p>Este es tu perfil de cliente.</p>
+    Authenticated username:
+    <div sec:authentication="name"></div>
+    Authenticated user roles:
+    <div sec:authentication="principal.authorities"></div>
 </body>
 </html>

@@ -7,10 +7,10 @@
 </head>
 
 <body>
-    <header>
-        <nav th:replace="~{/fragments/template :: nav}"></nav>
-    </header>
-
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+    <header sec:authorize="isAuthenticated() && !hasAuthority('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="hasAuthority('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
+    
     <div class="container contact-section">
         <h1 style="text-align: center; color: #4e4d41; font-weight: bold; font-size: 49px;">Contáctate con nosotros</h1>
         <div class="row">
@@ -76,8 +76,6 @@
     </div>
 
     <footer th:replace="~{/fragments/template :: footer}"></footer>
-    <div th:replace="~{/fragments/template :: login-modal}"></div>
-    <div th:replace="~{/fragments/template :: register-modal}"></div>
     <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
 </body>
 

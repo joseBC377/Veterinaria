@@ -8,9 +8,9 @@
 
 
 <body>
-    <header>
-        <nav th:replace="~{/fragments/template :: nav}"></nav>
-    </header>
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+    <header sec:authorize="isAuthenticated() && !hasAuthority('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="hasAuthority('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
     <main class="container text-center">
         <div>
             <img src="Multimedia/productos/banner_gato.png" class="img-fluid" alt="banner_gato">
@@ -60,8 +60,6 @@
         </main>
     </main>
     <footer th:replace="~{/fragments/template :: footer}"></footer>
-    <div th:replace="~{/fragments/template :: login-modal}"></div>
-    <div th:replace="~{/fragments/template :: register-modal}"></div>
     <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
 </body>
 

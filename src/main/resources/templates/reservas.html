@@ -4,15 +4,24 @@
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
     <th:block th:insert="~{/fragments/template_cliente :: meta(titulo='Reserva')}"></th:block>
+    <style>
+        .form-container {
+            background: #e7d1b7;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+    </style>
     <link rel="stylesheet" href="/css/reserva.css">
 </head>
 
 <body>
-    <header>
-        <nav th:replace="~{/fragments/template_cliente :: nav}"></nav>
-    </header>
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="hasRole('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
     <div class="wrapper">
         <div class="container">
             <div class="back-button">
@@ -32,10 +41,9 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <h2>PETLOVE CLÍNICA VETERINARIA</h2>
-                        <!-- Formulario 1: Selección de servicio -->
                         <div class="form-step" id="step1">
                             <h3>Seleccione un servicio</h3>
-                            <form id="service-form">
+                            <form id="service-form formulario-reserva">
                                 <div class="service">
                                     <input type="radio" id="vacunacion" name="service" value="Vacunación">
                                     <label for="vacunacion">Vacunación - S/50</label>
@@ -67,7 +75,6 @@
                             </div>
                         </div>
 
-                        <!-- Formulario 2: Selección de veterinario -->
                         <div class="form-step" id="step2" style="display: none;">
                             <h3>Veterinarios disponibles</h3>
                             <ul class="appointment-list" id="veterinarian-list"></ul>
@@ -76,7 +83,6 @@
                                 <button id="seguir2" class="btn btn-primary">Seguir</button>
                             </div>
                         </div>
-                        <!-- Formulario 3: Día y fecha -->
                         <div id="step3" style="display: none;">
                             <h2>Selecciona el día y la hora</h2>
                             <label for="appointment-date">Fecha de la cita:</label>
@@ -90,7 +96,6 @@
                             </div>
                         </div>
 
-                        <!-- Formulario 4: Confirmación de cita -->
                         <div id="step4" style="display: none;">
                             <h2>Resumen de la cita</h2>
                             <p id="appointment-summary"></p>
@@ -101,11 +106,61 @@
             </div>
         </div>
     </div>
+    <!-- <div class="container">
+        <div class="container" style="margin: 2rem;">
+            <a href="/servicios" class="btn-custom" style="text-decoration: none;">Regresar</a>
+        </div>
+        <h1 class="text-center mb-4 titulo-primario-productos">Realiza tu reserva aqui</h1>
+        <hr />
+        <div class="form-container">
+            <form th:object="${reservas}" th:action="@{/reserva/guardar}" method="post">
+                <input type="hidden" class="form-control" readonly th:field="*{id}">
+
+                <label for="fecha"><i class="far fa-calendar-alt icon"></i>Fecha</label>
+                <input type="date" class="form-control" th:field="*{fecha}" required>
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
+
+                <label for="hora"><i class="far fa-clock icon"></i>Hora</label>
+                <input type="time" class="form-control" th:field="*{hora}" required>
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}"></div>
+
+                <label for="veterinario"><i class="fas fa-user-md icon"></i>Veterinario</label>
+                <input type="text" class="form-control" th:field="*{veterinario}" required>
+                <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('veterinario')}"
+                    th:errors="*{veterinario}"></div>
+
+                <label for="clientes"><i class="fas fa-user icon"></i>Cliente</label>
+                <select th:field="*{cliente.id}" class="form-control" required>
+                    <option value="" disabled selected>Seleccione un cliente</option>
+                    <option th:if="${clientes.isEmpty()}" value="">No hay clientes disponibles</option>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+                        th:text="${cliente.nombre} + ' ' + ${cliente.apellido}"></option>
+                </select>
+                <label for="servicios"><i class="fas fa-stethoscope icon"></i>Servicio</label>
+                <select th:field="*{servicio.id}" class="form-control" required>
+                    <option th:if="${servicios.isEmpty()}" value="">No hay servicios disponibles</option>
+                    <option th:each="servicio : ${servicios}" th:value="${servicio.id}" th:text="${servicio.nombre}">
+                    </option>
+                </select>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn-custom" style="text-decoration: none;"
+                        th:disabled="${clientes.isEmpty() || servicios.isEmpty()}">Guardar</button>
+                    <div th:if="${clientes.isEmpty() || servicios.isEmpty()}" class="alert alert-danger mt-2">
+                        Asegúrese de que haya clientes y servicios disponibles antes de guardar.
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="container mt-3">
+            <div class="alert alert-warning" th:if="${mensajeErrorCliente}" th:text="${mensajeErrorCliente}"></div>
+            <div class="alert alert-warning" th:if="${mensajeErrorServicio}" th:text="${mensajeErrorServicio}"></div>
+        </div>
+    </div> -->
     <footer th:replace="~{/fragments/template :: footer}"></footer>
     <script src="/javascript/reserva.js"></script>
-    <div th:replace="~{/fragments/template :: login-modal}"></div>
-    <div th:replace="~{/fragments/template :: register-modal}"></div>
     <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+    <!-- <div th:replace="~{/fragments/template_cliente :: perfilCliente}"></div> -->
 </body>
 
 </html>

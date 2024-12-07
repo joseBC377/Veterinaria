@@ -1,0 +1,114 @@
+body {
+    background-color: #f5f5f5;
+}
+
+.check-icon {
+    font-size: 50px;
+    color: #28a745;
+}
+
+.confirmation-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.cart-item,
+.summary {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.cart-item img {
+    width: 100px;
+    height: auto;
+}
+
+.cart-item .btn {
+    border: 1px solid #732F2F;
+    color: #732F2F;
+    background-color: white;
+}
+
+.cart-item .btn:hover {
+    background-color: white;
+    color: #732F2F;
+}
+
+.cart-item .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item .actions .btn {
+    border: 1px solid #732F2F;
+    color: #732F2F;
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.cart-item .actions .btn:hover {
+    background-color: white;
+    color: #732F2F;
+}
+
+.cart-item .actions p {
+    margin: 0;
+    color: #732F2F;
+}
+
+.cart-item .actions .btn-outline-danger {
+    background-color: white;
+}
+
+.cart-item .actions .btn-outline-danger:hover {
+    background-color: white;
+    color: #732F2F;
+}
+
+.titulo-pedido {
+    font-size: 16px;
+    word-wrap: break-word; 
+    white-space: normal;
+    max-width: 200px; 
+}
+.boton-pdf {
+    background-color: #732F2F; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px;
+    font-size: 14px; 
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: auto; 
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.boton-pdf:hover {
+    background-color: #9B4141; 
+}
+
+.boton-pdf i {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.button-container {
+    text-align: center;
+}

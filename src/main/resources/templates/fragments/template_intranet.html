@@ -15,11 +15,10 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" th:fragment="header_admin">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index">
-                <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" width="45" height="45"
-                    class="d-inline-block align-text-top">
+            <a class="navbar-brand" href="/intranet">
+                <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
                 Petlove
             </a>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
@@ -32,25 +31,31 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="clientes">Gestión Clientes</a>
+                            <form th:action="@{/logout}" method="post">
+                                <button class="login-button  d-lg-none" type="submit">Cerrar sesión</button>
+                            </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="producto">Gestión Productos</a>
+                            <a class="nav-link mx-lg-2" href="/clientes">Gestión Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="categoria">Gestión Categoria</a>
+                            <a class="nav-link mx-lg-2" href="/producto">Gestión Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="servicio">Gestión Servicios </a>
+                            <a class="nav-link mx-lg-2" href="/categoria">Gestión Categoria</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="reserva">Gestión Reservas </a>
+                            <a class="nav-link mx-lg-2" href="/servicio">Gestión Servicios </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="/reserva">Gestión Reservas </a>
                         </li>
                 </div>
             </div>
             <form th:action="@{/logout}" method="post">
                 <button class="login-button d-none d-lg-block" type="submit">Cerrar sesión</button>
             </form>
+              
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,7 +67,6 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     </div>
-
 </body>
 
 </html>

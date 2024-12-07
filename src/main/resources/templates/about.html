@@ -5,9 +5,9 @@
         <link rel="stylesheet" href="/css/about.css">
     </head>
     <body>
-        <header>
-            <nav th:replace="~{/fragments/template :: nav}"></nav>
-        </header>
+        <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+        <header sec:authorize="isAuthenticated() && !hasAuthority('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+        <header sec:authorize="hasAuthority('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
         <section class="container-fluid">
             <div class="row">
                 <div class="text-center col-12 col-lg-6 ">
@@ -288,8 +288,6 @@
 
     </section>
     <footer  th:replace="~{/fragments/template :: footer}"></footer>
-    <div th:replace="~{/fragments/template :: login-modal}"></div>
-    <div th:replace="~{/fragments/template :: register-modal}"></div>
     <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
 </body>
 </html>

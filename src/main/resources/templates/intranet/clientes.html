@@ -38,9 +38,10 @@
 </style>
 
 <body>
-    <header>
-        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
-    </header>
+    <header sec:authorize="hasRole('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
+    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')"th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
+
     <div class="container my-5">
         <h1 class="text-center mb-4 titulo-primario-productos">Gestion de Cliente</h1>
 
@@ -90,11 +91,9 @@
     </div>
     <div class="container-fluid"
         style="margin: 2rem; display: flex; align-items: flex-end; justify-content: flex-end; width: 75%;">
-        <a th:href="@{/index}" class="btn-custom" style="text-decoration: none;">Regresar</a>
+        <a th:href="@{/intranet}" class="btn-custom" style="text-decoration: none;">Regresar</a>
     </div>
     <footer th:replace="~{/fragments/template :: footer}"></footer>
-    <div th:replace="~{/fragments/template :: login-modal}"></div>
-    <div th:replace="~{/fragments/template :: register-modal}"></div>
     <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
 </body>
 
