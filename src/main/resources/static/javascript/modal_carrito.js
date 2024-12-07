@@ -75,9 +75,11 @@ document.addEventListener('click', (e) => {
         if (existingProductIndex !== -1) {
             allProducts[existingProductIndex].quantity++;
         } else {
+            const productImage = productCard.querySelector('img').src;
             const newProduct = {
                 title: productTitle,
                 price: productPrice,
+                image: productImage,
                 quantity: 1
             };
             allProducts.push(newProduct);
@@ -92,7 +94,7 @@ rowProduct.addEventListener('click', (e) => {
         const index = e.target.dataset.index;
         allProducts.splice(index, 1);
         guardarCartToLocalStorage();
-        showHTML(); 
+        showHTML();
     }
 });
 

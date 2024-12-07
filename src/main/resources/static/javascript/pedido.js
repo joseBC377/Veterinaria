@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const subtotalElement = document.getElementById('subtotal');
     const totalElement = document.getElementById('total');
     
-    cartItemsContainer.innerHTML = `<p class="text-center">No hay productos en el carrito.</p>`;
     subtotalElement.textContent = 'S/. 0.00';
     totalElement.textContent = 'S/. 0.00';
 
