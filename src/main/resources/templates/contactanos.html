@@ -4,18 +4,22 @@
 <head>
     <th:block th:insert="~{/fragments/template :: meta(titulo='Contáctenos')}"></th:block>
     <link rel="stylesheet" href="/css/contactanos.css">
+    <link rel="stylesheet" href="/css/carritto.css">
+
 </head>
 
 <body>
     <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
-    <header sec:authorize="isAuthenticated() && !hasAuthority('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="isAuthenticated() && !hasAuthority('ADMIN')"
+        th:replace="~{fragments/template_cliente :: header_cliente}"></header>
     <header sec:authorize="hasAuthority('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
-    
+
     <div class="container contact-section">
         <h1 style="text-align: center; color: #4e4d41; font-weight: bold; font-size: 49px;">Contáctate con nosotros</h1>
         <div class="row">
             <div class="col-md-6 contact-info">
-                <p style="font-size: 18px;">Para mayor información o solicitar nuestros servicios, por favor llene el formulario o envíenos un mensaje a nuestro correo.</p>
+                <p style="font-size: 18px;">Para mayor información o solicitar nuestros servicios, por favor llene el
+                    formulario o envíenos un mensaje a nuestro correo.</p>
                 <i class="bi bi-geo-alt-fill"></i> Dirección
                 <p style="font-size: 19px;">Av. Javier Prado Este 4930, Surco, Lima</p>
                 <i class="bi bi-telephone-fill"></i> Fijo
@@ -31,38 +35,50 @@
             <div class="col-md-6 contact-info">
                 <div class="form-contact">
                     <h4 style="color: #481E1E; font-size: 34px;">Formulario de Contacto</h4>
+                    <div class="mi-botoncorreo">
+                        <h5 th:if="${#authorization.expression('!isAuthenticated()')}">
+                            Por favor <a th:href="@{/login}">inicia sesión</a> para continuar.
+                        </h5>
+                        <h5 th:if="${#authorization.expression('isAuthenticated()')}">
+                            Bienvenido, [[${#authentication.name}]].
+                        </h5>
+                    </div>
+
                     <form th:object="${contacto}" th:action="@{/contactanos/guardar}" method="post">
                         <input type="hidden" th:field="*{id}">
                         <div class="row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <input type="text" class="form-control" placeholder="Nombres" required th:field="*{nombre}">
+                            <div class="col-12 col-md-6 ">
+                                <input type="text" class="form-control" placeholder="Nombres" required
+                                    th:field="*{nombre}">
                             </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <input type="text" class="form-control" placeholder="Apellidos" required th:field="*{apellido}">
+                            <div class="col-12 col-md-6 ">
+                                <input type="text" class="form-control" placeholder="Apellidos" required
+                                    th:field="*{apellido}">
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Correo Electrónico" required th:field="*{correo}">
-                        </div>
+                        <!-- <div class="mb-3"> -->
+                        <input type="hidden" th:field="*{correo}" th:value="${#authentication.name}">
+                        <!-- </div> -->
                         <div class="mb-3">
                             <select class="form-control" required th:field="*{servicio.id}">
                                 <option th:each="servicio : ${servicios}" th:value="${servicio.id}"
-                                th:text="${servicio.nombre}"></option>
+                                    th:text="${servicio.nombre}"></option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" rows="4" placeholder="Mensaje" required th:field="*{mensaje}"></textarea>
+                            <textarea class="form-control" rows="4" placeholder="Mensaje" required
+                                th:field="*{mensaje}"></textarea>
                         </div>
                         <div class="row align-items-center">
-                            <div class="col-6 mb-2">
+                            <div class="col-12 mb-2">
                                 <button type="submit" class="btn-custom">Enviar mensaje</button>
                             </div>
                             <div class="col-6 mb-2">
-                                <a class="btn-custom" th:href="@{/contactanos/edicionContactanos}" style="text-decoration: none;">Editar Mensaje</a>
+                                <!-- <a class="btn-custom" th:href="@{/contactanos/edicionContactanos}" style="text-decoration: none;">Editar Mensaje</a> -->
                             </div>
                         </div>
                     </form>
-                   
+
                 </div>
             </div>
         </div>

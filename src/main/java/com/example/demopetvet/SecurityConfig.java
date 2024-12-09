@@ -43,7 +43,7 @@ public class SecurityConfig {
         return http.authorizeHttpRequests(
                     auth -> auth.requestMatchers("/", "/login", "/index", "/about", "/contactanos", "/servicios",
                                     "/productos_gatos", "/productos_perros", "/producto_otras_mascotas",
-                                    "/productos","pedido", "/registro", "/intranet_usuario", "/css/**", "/guardado/**",
+                                    "/productos","pedido", "/registro/**", "/intranet_usuario", "/css/**", "/guardado/**",
                                     "/guardadoServicio/**", "/javascript/**", "/Multimedia/**")
                                     .permitAll()
                                     .requestMatchers("/intranet", "/clientes", "/producto", "/categoria", "/servicio", "/reserva",

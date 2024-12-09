@@ -45,6 +45,7 @@ const showHTML = () => {
         const containerProduct = document.createElement('div');
         containerProduct.classList.add('cart-product');
         containerProduct.innerHTML = `
+            
             <div class="info-cart-product">
                 <span class="cantidad-producto-carrito">${product.quantity}</span>
                 <p class="titulo-producto-carrito">${product.title}</p>

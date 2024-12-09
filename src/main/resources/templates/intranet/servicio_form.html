@@ -31,8 +31,8 @@
         </div>
         <h1 class="text-center mb-4 titulo-primario-productos">Editar servicios</h1>
         <hr />
-        <div class="form-container">
-            <form th:object="${servicio}" class="form-control" th:action="@{/servicio/guardar}" method="post" enctype="multipart/form-data">
+        <div class="form-container" >
+            <form th:object="${servicio}"  th:action="@{/servicio/guardar}" method="post" enctype="multipart/form-data">
                 <input type="hidden" readonly th:field="*{id}">
                 <div class="form-group">
                     <label class="m-2">Imagen</label>

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <th:block th:insert="~{/fragments/template_cliente :: meta(titulo='Cliente')}"></th:block>
     <title>Página para el cliente</title>
+    <link rel="stylesheet" href="/css/carritto.css">
+
 </head>
 <body>
     <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
@@ -17,4 +19,7 @@
     Authenticated user roles:
     <div sec:authentication="principal.authorities"></div>
 </body>
+
+<footer th:replace="~{/fragments/template :: footer}"></footer>
+<div th:replace="~{/fragments/template :: scripts-temporal}"></div>
 </html>

@@ -1,8 +1,18 @@
-h4{
+h4 {
     text-align: center;
-    margin-top: 0; 
-    padding-top: 3px; 
+    margin-top: 0;
+    padding-top: 3px;
 }
+
+.mi-botoncorreo a {
+    color: white !important;
+}
+
+.mi-botoncorreo a:hover {
+    color: #481E1E !important;
+    transition: color 0.4s ease-in-out !important;
+}
+
 .contact-section {
     display: flex;
     justify-content: center;
@@ -10,6 +20,7 @@ h4{
     flex-direction: column;
     margin-top: 19px;
 }
+
 .form-contact {
     background-color: #e0c18f;
     padding: 25px;
@@ -17,55 +28,61 @@ h4{
     text-align: center;
     margin: 0;
 }
-.form-contact input, .form-contact textarea {
+
+.form-contact input,
+.form-contact textarea {
     margin-bottom: 10px;
 }
 
-.form-control{
-    appearance: auto !important; 
-    -webkit-appearance: auto; 
+.form-control {
+    appearance: auto !important;
+    -webkit-appearance: auto;
 }
 
 .social-icons i {
     font-size: 24px;
     margin-right: 15px;
 }
+
 .btn-custom {
-    background-color:  #732F2F; 
-    color: white; 
+    background-color: #732F2F;
+    color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    transition: background-color 0.3s ease; 
-    cursor: pointer; 
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-custom:hover {
-    background-color: #481E1E; 
+    background-color: #481E1E;
 }
 
 
-.contact-info{
+.contact-info {
     padding: 1.5rem;
 }
+
 @media (min-width: 768px) and (max-width: 1024px) {
 
-    .contact-info .bi{
+    .contact-info .bi {
         margin-bottom: 0 !important;
     }
-    .contact-info .i{
+
+    .contact-info .i {
         font-size: 10px;
     }
 
-    .form-contact{
+    .form-contact {
         top: 4rem;
         position: relative;
     }
-    
+
 
 
 }
+
 @media (max-width: 991px) {
     .contact-info {
         text-align: center;
@@ -98,5 +115,3 @@ h4{
         margin-bottom: 20px;
     }
 }
-
-

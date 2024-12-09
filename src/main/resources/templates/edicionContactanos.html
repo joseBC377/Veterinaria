@@ -5,6 +5,8 @@
     <th:block th:insert="~{/fragments/template :: meta(titulo='Edición de mensajes')}"></th:block>
     <link rel="stylesheet" href="/css/contactanos.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/carritto.css">
+
 </head>
 <style>
     table > tbody {
@@ -30,13 +32,13 @@
 </style>
 
 <body>
-    <header>
-        <nav th:replace="~{/fragments/template_reserva :: nav}"></nav>
-    </header>
+    <header sec:authorize="hasRole('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
+    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')"th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
     <h1 style="text-align: center; margin: 1rem;">Lista de mensajes</h1>
 
     <div class="container-fluid" style="width: 100%; overflow-x: auto; display: flex; justify-content: center;">
-        <div class="table-responsive" style="width: 80%;">
+        <div class="table-responsive table-container" style="width: 80%;">
             <table class="table table-custom">
                 <thead>
                     <tr>
@@ -46,7 +48,7 @@
                         <th scope="col">Correo</th>
                         <th scope="col">Categoria</th>
                         <th scope="col">Mensaje</th>
-                        <th scope="col" colspan="2">Acciones</th>
+                        <th scope="col" colspan="1">Acciones</th>
                     </tr>
                 </thead>
                 <tbody style="color: white; text-align: center;">
@@ -60,11 +62,11 @@
                         <td>[[${i.Correo}]]</td>
                         <td>[[${i.servicio.nombre}]]</td>
                         <td class="truncate-text" title="[[${i.Mensaje}]]">[[${i.Mensaje}]]</td>
-                        <td class="my-1">
+                        <!-- <td class="my-1">
                             <a class="btn btn-warning" th:href="@{editar/{id}(id=${i.id})}">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
-                        </td>
+                        </td> -->
                         <td class="my-1">
                             <a class="btn btn-danger" th:href="@{eliminar/{id}(id=${i.id})}"
                                onclick="return confirm('Estas seguro de eliminar este mensaje')">
@@ -77,10 +79,6 @@
         </div>
     </div>
 
-    <div class="container-fluid"
-        style="margin: 2rem; display: flex; align-items: flex-end; justify-content: flex-end; width: 80%;">
-        <a th:href="@{/contactanos}" class="btn-custom" style="text-decoration: none;">Regresar</a>
-    </div>
 
     <footer th:replace="~{/fragments/template :: footer}"></footer>
     <div th:replace="~{/fragments/template :: scripts-temporal}"></div>

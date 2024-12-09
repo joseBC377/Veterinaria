@@ -37,6 +37,7 @@ public class ContactanosController {
     //Ir al formulario
     @GetMapping()
     public String contactanosIns(Model model) {
+        
         model.addAttribute("contacto", new Contactanos());
         model.addAttribute("servicios", servicioService.selectAllWithSizeLog());
         return "contactanos";
@@ -54,6 +55,14 @@ public class ContactanosController {
         if (result.hasErrors()) {
             return "contactanos";
         }
+        // Obtener el correo del usuario autenticado
+        String correoAutenticado = org.springframework.security.core.context.SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();    
+        // Asignar el correo al objeto contacto
+        contacto.setCorreo(correoAutenticado);
+        // Guardar el contacto
         service.insUpd(contacto);
         return "redirect:/contactanos";
     }

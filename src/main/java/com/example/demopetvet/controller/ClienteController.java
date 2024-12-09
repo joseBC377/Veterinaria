@@ -41,40 +41,25 @@ public class ClienteController {
         model.addAttribute("cliente", service.selectById(id));
         return "intranet/cliente_form";
     }
-
-    // Procesar el formulario
-    // @PostMapping("guardar")
-    // public String clienteGuardar(@Valid @ModelAttribute("cliente") Cliente
-    // cliente, BindingResult result, Model model) {
-    // if (result.hasErrors()) {
-    // return "intranet/cliente_form";
-    // }
-    // if (cliente.getId() != null) { // Verifica si es una edición
-    // Cliente clienteExistente = service.selectById(cliente.getId());
-    // cliente.setContrasena(clienteExistente.getContrasena()); // Mantener
-    // contraseña anterior
-    // }
-    // try {
-    // service.insUpd(cliente);
-    // } catch (DataIntegrityViolationException ex) {
-    // // Verifica si el error es específicamente por un correo duplicado
-    // model.addAttribute("mensajeError", "El correo ingresado ya está registrado.
-    // Por favor, use otro correo.");
-    // return "intranet/cliente_form";
-    // }
-    // return "redirect:/clientes";
-    // }
     @PostMapping("guardar")
     public String clienteGuardar(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "intranet/cliente_form";
         }
+    
         if (cliente.getId() != null) { // Edición
             Cliente clienteExistente = service.selectById(cliente.getId());
+            
+            // Mantener contraseña anterior si no se proporcionó una nueva
             if (cliente.getContrasena() == null || cliente.getContrasena().isEmpty()) {
-                // Mantener contraseña anterior si no se proporcionó una nueva
                 cliente.setContrasena(clienteExistente.getContrasena());
             }
+    
+            // Mantener el rol existente
+            cliente.setRol(clienteExistente.getRol());
+        } else { 
+            // Asignar rol predeterminado si es un nuevo cliente
+            cliente.setRol("ADMIN");
         }
         try {
             service.insUpd(cliente);

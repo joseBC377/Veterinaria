@@ -1,5 +1,6 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="meta(titulo)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,8 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" th:href="${homeUrl}">
-                <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" width="45" height="45" class="d-inline-block align-text-top">
+                <img src="/Multimedia/Home/logo_petlove.png" alt="Logo" width="45" height="45"
+                    class="d-inline-block align-text-top">
                 Petlove
             </a>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
@@ -41,12 +43,19 @@
             <div class="ms-auto ">
                 <div class="container-icon">
                     <div class="container-cart-icon login-compras">
-                        <i class="bi bi-bag boton-tienda"></i>
-                        <div class="count-products">
-                            <span id="contador-productos">0</span>
+                        <div class="container mt-3 shopping-cart-container">
+                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
+                                <div class="custom-cart-info">
+                                    <span class="custom-item-quantity">#</span>
+                                    <span class="custom-item-title">Nombre</span>
+                                    <span class="custom-item-price">Precio</span>
+                                </div>
+                                <div class="row-product">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     <div class="countainer-cart-products hidden-cart">
                         <div class="row-product">
 
@@ -65,15 +74,16 @@
             <form th:action="@{/logout}" method="post">
                 <button class="login-button d-none d-lg-block" type="submit">Cerrar sesión</button>
             </form>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
     <div th:fragment="scripts-temporal">
         <script src='/javascript/reserva.js'></script>
     </div>
 </body>
-</html> -->
+
+</html>

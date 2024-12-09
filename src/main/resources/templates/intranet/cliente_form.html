@@ -34,6 +34,7 @@
         <div class="formulario-container">
             <form th:object="${cliente}" th:action="@{/clientes/guardar}" method="post" class="form-container">
                 <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{rol}" value="ADMIN">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input  class="form-control" type="text" th:field="*{nombre}" required>

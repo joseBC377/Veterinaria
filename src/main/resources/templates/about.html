@@ -3,6 +3,8 @@
     <head>
         <th:block th:insert="~{/fragments/template :: meta(titulo='Nosotros')}"></th:block>
         <link rel="stylesheet" href="/css/about.css">
+        <link rel="stylesheet" href="/css/carritto.css">
+
     </head>
     <body>
         <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
