@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demopetvet.entity.Cliente;
@@ -27,7 +28,8 @@ public class RegistroController {
     }
 
     @PostMapping("/registro/guardar")
-    public String clienteGuardar(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult result, Model model) {
+    public String clienteGuardar(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult result,
+            Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             // Retornar la vista de registro con los errores de validación
             return "registro";
@@ -42,6 +44,11 @@ public class RegistroController {
             model.addAttribute("mensajeError", "El correo ingresado ya está registrado. Por favor, use otro correo.");
             return "registro";
         }
+
+        // Agregar mensaje flash
+        redirectAttributes.addFlashAttribute("mensajeExito",
+                "¡Cuenta creada exitosamente! Ahora puedes iniciar sesión.");
         return "redirect:/intranet_usuario";
     }
+
 }
