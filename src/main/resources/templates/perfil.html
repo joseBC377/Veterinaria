@@ -1,25 +1,119 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <th:block th:insert="~{/fragments/template_cliente :: meta(titulo='Cliente')}"></th:block>
     <title>Página para el cliente</title>
     <link rel="stylesheet" href="/css/carritto.css">
+    <style>
+        .text-brown {
+            color: #732F2F;
+        }
 
+        .bg-light-brown {
+            background-color: #F9F3F3;
+        }
+
+        .border-brown {
+            border: 1px solid #D9A9A9;
+        }
+
+        .btn-brown {
+            background-color: #732F2F;
+            color: white;
+            border: none;
+        }
+
+        .btn-brown:hover {
+            background-color: #531E1E;
+            color: white;
+        }
+
+        .card {
+            background-color: #F9F3F3;
+            border: 1px solid #D9A9A9;
+        }
+
+        .form-control {
+            border: 1px solid #D9A9A9;
+        }
+
+        .form-control:focus {
+            border-color: #732F2F;
+            box-shadow: 0 0 5px rgba(115, 47, 47, 0.5);
+        }
+    </style>
 </head>
+
 <body>
     <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
-    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')" th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')"
+        th:replace="~{fragments/template_cliente :: header_cliente}"></header>
     <header sec:authorize="hasRole('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
-    <h1>Bienvenido, <span th:text="${#authentication.name}"></span></h1>
-    <p>Este es tu perfil de cliente.</p>
-    Authenticated username:
-    <div sec:authentication="name"></div>
-    Authenticated user roles:
-    <div sec:authentication="principal.authorities"></div>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4 text-brown">
+            <i class="bi bi-person-circle"></i> Mi Perfil
+        </h2>
+        <p class="text-center text-muted">
+            <i class="bi bi-envelope"></i> <span th:text="${cliente.email}">correo@ejemplo.com</span>
+        </p>
+        <div class="card mx-auto shadow-sm border-0" style="max-width: 600px; background-color: #F9F3F3;">
+            <div class="card-body">
+                <p style="color:rgba(115, 47, 47, 0.5);">* Llena solo los campos que deseas actualizar.</p>
+                <h5 class="card-title text-center text-brown">Información Personal</h5>
+                <form th:object="${cliente}" th:action="@{/perfil/guardar}" method="post">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label text-brown">
+                            <i class="bi bi-person"></i> Nombre
+                        </label>
+                        <input id="nombre" class="form-control border-brown" type="text" th:field="*{nombre}"
+                            placeholder="Ingresa tu nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label text-brown">
+                            <i class="bi bi-person"></i> Apellido
+                        </label>
+                        <input id="apellido" class="form-control border-brown" type="text" th:field="*{apellido}"
+                            placeholder="Ingresa tu apellido">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label text-brown">
+                            <i class="bi bi-telephone"></i> Teléfono
+                        </label>
+                        <input id="telefono" class="form-control border-brown" type="text" th:field="*{telefono}"
+                            placeholder="Ingresa tu número de teléfono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label text-brown">
+                            <i class="bi bi-house-door"></i> Dirección
+                        </label>
+                        <input id="direccion" class="form-control border-brown" type="text" th:field="*{direccion}"
+                            placeholder="Ingresa tu dirección">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contrasena" class="form-label text-brown">
+                            <i class="bi bi-key"></i> Nueva Contraseña
+                        </label>
+                        <input id="contrasena" class="form-control border-brown" type="password"
+                            th:field="*{contrasena}" placeholder="Deja en blanco si no deseas cambiarla">
+                    </div>
+                    <!-- Alerta de éxito -->
+                    <div class="alert alert-success text-center" th:if="${mensajeExito}" th:text="${mensajeExito}"
+                        style="padding: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                    </div>
+                    <button type="submit" class="btn btn-brown w-100">
+                        <i class="bi bi-save"></i> Guardar Cambios
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 <footer th:replace="~{/fragments/template :: footer}"></footer>
 <div th:replace="~{/fragments/template :: scripts-temporal}"></div>
+
 </html>
