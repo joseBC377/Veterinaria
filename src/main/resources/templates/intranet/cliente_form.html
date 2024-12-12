@@ -10,6 +10,7 @@
         label {
             font-weight: bold;
         }
+
         .formulario-container {
             background: #e7d1b7;
             border-radius: 8px;
@@ -23,12 +24,13 @@
 
 <body>
     <header sec:authorize="hasRole('ADMIN')" th:replace="~{fragments/template_intranet :: header_admin}"></header>
-    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')"th:replace="~{fragments/template_cliente :: header_cliente}"></header>
+    <header sec:authorize="isAuthenticated() && !hasRole('ADMIN')"
+        th:replace="~{fragments/template_cliente :: header_cliente}"></header>
     <header sec:authorize="!isAuthenticated()" th:replace="~{fragments/template :: header_publico}"></header>
 
     <div class="container">
         <div class="text-right" style="margin: 2rem;">
-            <a href="/clientes" class="btn-custom" style="text-decoration: none;" >Regresar</a>
+            <a href="/clientes" class="btn-custom" style="text-decoration: none;">Regresar</a>
         </div>
         <hr />
         <div class="formulario-container">
@@ -37,39 +39,43 @@
                 <input type="hidden" th:field="*{rol}" value="ADMIN">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input  class="form-control" type="text" th:field="*{nombre}" required>
-                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    <input class="form-control" type="text" th:field="*{nombre}" required>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="tipo">Apellido</label>
-                    <input  class="form-control" type="text" th:field="*{apellido}" required>
-                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+                    <input class="form-control" type="text" th:field="*{apellido}" required>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('apellido')}"
+                        th:errors="*{apellido}"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="tipo">Correo</label>
-                    <input  class="form-control" type="email" th:field="*{email}" required>
-                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    <input class="form-control" type="email" th:field="*{email}" required>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                    </div>
                 </div>
                 <div class="alert alert-danger" th:if="${mensajeError}" th:text="${mensajeError}"></div>
 
                 <div class="form-group">
                     <label for="text">Teléfono</label>
-                    <input  class="form-control" type="text" th:field="*{telefono}" required>
-                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+                    <input class="form-control" type="text" th:field="*{telefono}" required>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('telefono')}"
+                        th:errors="*{telefono}"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="tipo">Dirección</label>
-                    <input  class="form-control" type="text" th:field="*{direccion}" required>
-                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+                    <input class="form-control" type="text" th:field="*{direccion}" required>
+                    <div class="alert alert-danger mt-1" th:if="${#fields.hasErrors('direccion')}"
+                        th:errors="*{direccion}"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="tipo">Contraseña</label>
-                    <!-- se bloqueó la contraseña para que no se actualice si se está editando un cliente existente  -->
-                    <input  class="form-control" type="password" th:field="*{contrasena}" placeholder="*********" th:disabled="${cliente.id != null}">
+                    <input class="form-control" type="password" th:field="*{contrasena}" placeholder="*********" required>
                 </div>
 
                 <div class="text-center mt-3">
