@@ -19,7 +19,7 @@ public class ClienteService {
     private PasswordEncoder passwordEncoder;
     // select* from
     public List<Cliente> selectAll() {
-        return repository.findAll();
+        return repository.findByRol("ADMIN");
     }
 
     // Select *from where
