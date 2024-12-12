@@ -6,108 +6,100 @@ A continuación, se muestra el esquema de la base de datos **PetVet**:
 CREATE DATABASE petvet;
 USE petvet;
 
+CREATE TABLE `categoria_producto` (
+  `CategoriaID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `Tipo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`CategoriaID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Crear la tabla Clientes
-CREATE TABLE IF NOT EXISTS Clientes (
-    ClienteID INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre VARCHAR(100) NOT NULL,
-    Apellido VARCHAR(100) NOT NULL,
-    Email VARCHAR(150) NOT NULL UNIQUE,
-    Telefono VARCHAR(15),
-    Direccion VARCHAR(255),
-    Contrasena VARCHAR(255) NOT NULL
-);
+CREATE TABLE `clientes` (
+  `ClienteID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `Apellido` varchar(100) NOT NULL,
+  `Email` varchar(150) NOT NULL,
+  `Telefono` varchar(15) DEFAULT NULL,
+  `Direccion` varchar(255) DEFAULT NULL,
+  `Contrasena` varchar(255) NOT NULL,
+  `rol` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ClienteID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+INSERT INTO `clientes` (`Nombre`, `Apellido`, `Email`, `Telefono`, `Direccion`, `Contrasena`, `rol`) VALUES
+('Luis', 'Torres', 'dani@example.com', '931234567', 'Pasaje del Sol 89', '$2a$12$7BfJO5qTgKuEFjgCQjBMZezujGXtEGvCY3BcjudDc5TVrDR9Jcihe', 'ADMIN');
 
--- Crear la tabla Categoria_Producto
-CREATE TABLE IF NOT EXISTS Categoria_Producto (
-    CategoriaID INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre VARCHAR(100) NOT NULL,
-    Tipo VARCHAR(50)
+CREATE TABLE `servicio` (
+  `ServicioID` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `precio` double NOT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  `detalles` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ServicioID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+CREATE TABLE `pedido` (
+  `PedidoID` int(11) NOT NULL AUTO_INCREMENT,
+  `Fecha` datetime NOT NULL,
+  `ClienteID` int(11) NOT NULL,
+  PRIMARY KEY (`PedidoID`),
+  FOREIGN KEY (`ClienteID`) REFERENCES `clientes`(`ClienteID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-);
+CREATE TABLE `producto` (
+  `ProductoID` int(11) NOT NULL AUTO_INCREMENT,
+  `Imagen` varchar(255) NOT NULL,
+  `Titulo` varchar(50) NOT NULL,
+  `Precio` decimal(10,2) NOT NULL,
+  `CategoriaID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ProductoID`),
+  FOREIGN KEY (`CategoriaID`) REFERENCES `categoria_producto`(`CategoriaID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+CREATE TABLE `contactanos` (
+  `ContactoID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `Apellido` varchar(100) NOT NULL,
+  `Correo` varchar(150) NOT NULL,
+  `Mensaje` text NOT NULL,
+  `ServicioID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ContactoID`),
+  FOREIGN KEY (`ServicioID`) REFERENCES `servicio`(`ServicioID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Crear la tabla Producto
-CREATE TABLE IF NOT EXISTS Producto (
-    ProductoID INT AUTO_INCREMENT PRIMARY KEY,
-    Imagen VARCHAR(255) NOT NULL,
-    Titulo VARCHAR(50) NOT NULL,
-    Precio DECIMAL(10, 2) NOT NULL,
-    CategoriaID INT,  -- Relación con la tabla de categoría
-    FOREIGN KEY (CategoriaID) REFERENCES Categoria_Producto(CategoriaID)
+CREATE TABLE `detalle_pedido` (
+  `DetalleID` int(11) NOT NULL AUTO_INCREMENT,
+  `PedidoID` int(11) NOT NULL,
+  `ProductoID` int(11) NOT NULL,
+  `Cantidad` int(11) NOT NULL,
+  `PrecioUnitario` decimal(10,2) NOT NULL,
+  `FechaPedido` datetime NOT NULL,
+  PRIMARY KEY (`DetalleID`),
+  FOREIGN KEY (`PedidoID`) REFERENCES `pedido`(`PedidoID`),
+  FOREIGN KEY (`ProductoID`) REFERENCES `producto`(`ProductoID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+CREATE TABLE `pagos` (
+  `PagoID` int(11) NOT NULL AUTO_INCREMENT,
+  `PedidoID` int(11) NOT NULL,
+  `Total` decimal(10,2) NOT NULL,
+  `FechaPago` datetime NOT NULL,
+  `MetodoPago` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`PagoID`),
+  FOREIGN KEY (`PedidoID`) REFERENCES `pedido`(`PedidoID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-);
-
-
--- Crear la tabla Pedido
-CREATE TABLE IF NOT EXISTS Pedido (
-    PedidoID INT AUTO_INCREMENT PRIMARY KEY,
-    Fecha DATETIME NOT NULL,
-    ClienteID INT NOT NULL,
-    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
-);
-
-
--- Crear la tabla Detalle_Pedido
-CREATE TABLE IF NOT EXISTS Detalle_Pedido (
-    DetalleID INT AUTO_INCREMENT PRIMARY KEY,
-    PedidoID INT NOT NULL,
-    ProductoID INT NOT NULL,
-    Cantidad INT NOT NULL,
-    PrecioUnitario DECIMAL(10, 2) NOT NULL,
-    FechaPedido DATETIME NOT NULL,
-    FOREIGN KEY (PedidoID) REFERENCES Pedido(PedidoID),
-    FOREIGN KEY (ProductoID) REFERENCES Producto(ProductoID)
-);
-
-
--- Crear la tabla Servicio
-CREATE TABLE IF NOT EXISTS servicio (
-   ServicioID INT AUTO_INCREMENT PRIMARY KEY,
-   nombre varchar(255) NOT NULL,
-   descripcion varchar(255) DEFAULT NULL,
-   precio double DEFAULT NULL,
-   imagen varchar(255) DEFAULT NULL,
-   detalles varchar(255) DEFAULT NULL
-);
-
-
--- Crear la tabla Pagos
-CREATE TABLE IF NOT EXISTS Pagos (
-    PagoID INT AUTO_INCREMENT PRIMARY KEY,
-    PedidoID INT NOT NULL,
-    Total DECIMAL(10, 2) NOT NULL,
-    FechaPago DATETIME NOT NULL,
-    MetodoPago VARCHAR(30),
-    FOREIGN KEY (PedidoID) REFERENCES Pedido(PedidoID)
-);
-
-
--- Crear la tabla Reserva
-CREATE TABLE IF NOT EXISTS reserva (
-    ReservaID INT AUTO_INCREMENT PRIMARY KEY,
-    Fecha DATE NOT NULL,
-    Hora TIME NOT NULL,
-    ServicioID INT NOT NULL,
-    Veterinario VARCHAR(150),
-    ClienteID INT NOT NULL,
-    FOREIGN KEY (ServicioID) REFERENCES Servicio(ServicioID),
-    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
-);
-
-
--- Crear la tabla Contactanos
-CREATE TABLE IF NOT EXISTS Contactanos (
-    ContactoID INT AUTO_INCREMENT PRIMARY KEY,  
-    Nombre VARCHAR(100) NOT NULL,               
-    Apellido VARCHAR(100) NOT NULL,             
-    Correo VARCHAR(150) NOT NULL,                
-    Mensaje TEXT NOT NULL,              
-    ServicioID INT NOT NULL,
-    FOREIGN KEY (ServicioID ) REFERENCES servicio(ServicioID )
+CREATE TABLE `reserva` (
+  `ReservaID` int(11) NOT NULL AUTO_INCREMENT,
+  `Fecha` date NOT NULL,
+  `Hora` time NOT NULL,
+  `ServicioID` int(11) DEFAULT NULL,
+  `Veterinario` varchar(150) DEFAULT NULL,
+  `ClienteID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ReservaID`),
+  FOREIGN KEY (`ServicioID`) REFERENCES `servicio`(`ServicioID`),
+  FOREIGN KEY (`ClienteID`) REFERENCES `clientes`(`ClienteID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
                    
 );
 
